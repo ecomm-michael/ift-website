@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournaments — International Fishing Team</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --navy: #0B2D45;
+            --teal: #0099B5;
+            --turquoise: #00C4CC;
+            --gold: #F5A623;
+            --coral: #E84E3A;
+            --seafoam: #EDF7F9;
+            --sandy: #F9F4E8;
+            --white: #FFFFFF;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            color: var(--navy);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ---------- UTILITIES ---------- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section-pad {
+            padding: 100px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-teal {
+            background: var(--teal);
+            color: var(--white);
+            border-color: var(--teal);
+        }
+
+        .btn-teal:hover {
+            background: #007a91;
+            border-color: #007a91;
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--white);
+        }
+
+        .btn-outline-teal {
+            background: transparent;
+            color: var(--teal);
+            border-color: var(--teal);
+        }
+
+        .btn-outline-teal:hover {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .btn-navy {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        .btn-navy:hover {
+            background: #0a2438;
+            border-color: #0a2438;
+        }
+
+        .btn-pill {
+            border-radius: 999px;
+        }
+
+        /* ---------- SCROLL REVEAL ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- 1. FIXED NAV ---------- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: var(--white);
+            border-bottom: 1px solid rgba(11, 45, 69, 0.08);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 2px 24px rgba(11, 45, 69, 0.1);
+            border-bottom-color: rgba(11, 45, 69, 0.12);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo-sub {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            color: var(--navy);
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+
+        .nav-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 36px;
+        }
+
+        .nav-center a {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-center a:hover {
+            color: var(--teal);
+        }
+
+        .nav-center a.active {
+            color: var(--teal);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        .lang-switch {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            color: var(--navy);
+            opacity: 0.45;
+            letter-spacing: 1px;
+        }
+
+        .lang-switch span {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .lang-switch span:hover {
+            opacity: 1;
+        }
+
+        .lang-switch .active {
+            opacity: 1;
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            background: var(--teal);
+            color: var(--white);
+            padding: 9px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #007a91;
+        }
+
+        /* ---------- HERO ---------- */
+        .page-hero {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            margin-top: 64px;
+            overflow: hidden;
+        }
+
+        .page-hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+        }
+
+        .page-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 45, 69, 0.7) 0%, rgba(11, 45, 69, 0.3) 100%);
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 32px;
+        }
+
+        .page-hero h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 72px;
+            line-height: 0.95;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .page-hero .eyebrow {
+            color: var(--gold);
+            letter-spacing: 5px;
+            font-size: 11px;
+            margin-bottom: 20px;
+        }
+
+        /* ---------- TOURNAMENT SCHEDULE ---------- */
+        .schedule-section {
+            padding: 100px 0;
+        }
+
+        .schedule-section h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--navy);
+            margin-bottom: 40px;
+        }
+
+        /* Desktop Table */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Barlow', sans-serif;
+        }
+
+        .schedule-table thead th {
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(11, 45, 69, 0.5);
+            text-align: left;
+            padding: 16px 20px;
+            border-bottom: 2px solid rgba(11, 45, 69, 0.08);
+        }
+
+        .schedule-table tbody td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(11, 45, 69, 0.06);
+            font-size: 15px;
+            vertical-align: middle;
+        }
+
+        .schedule-table tbody tr:hover {
+            background: var(--seafoam);
+        }
+
+        .td-date {
+            color: rgba(11, 45, 69, 0.6);
+        }
+
+        .td-name {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .td-location {
+            color: rgba(11, 45, 69, 0.6);
+        }
+
+        .td-prize {
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 5px 14px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
+        }
+
+        .status-open {
+            background: rgba(0, 153, 181, 0.1);
+            color: var(--teal);
+        }
+
+        .status-upcoming {
+            background: rgba(245, 166, 35, 0.1);
+            color: var(--gold);
+        }
+
+        .status-completed {
+            background: rgba(11, 45, 69, 0.08);
+            color: rgba(11, 45, 69, 0.5);
+        }
+
+        /* Mobile Cards (hidden on desktop) */
+        .mobile-cards {
+            display: none;
+        }
+
+        .mobile-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(11, 45, 69, 0.06);
+            border: 1px solid rgba(11, 45, 69, 0.08);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .mobile-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .mobile-card-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--navy);
+        }
+
+        .mobile-card-date {
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.5);
+        }
+
+        .mobile-card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .mobile-card-location {
+            color: rgba(11, 45, 69, 0.6);
+        }
+
+        .mobile-card-prize {
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        /* ---------- PAST RESULTS ---------- */
+        .past-results {
+            padding: 100px 0;
+            background: var(--seafoam);
+        }
+
+        .past-results h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--navy);
+            margin-bottom: 40px;
+        }
+
+        .accordion {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid rgba(11, 45, 69, 0.08);
+            overflow: hidden;
+            max-width: 720px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(11, 45, 69, 0.06);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 24px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--navy);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .accordion-trigger:hover {
+            background: var(--seafoam);
+        }
+
+        .accordion-trigger::after {
+            content: '+';
+            font-size: 20px;
+            font-weight: 300;
+            color: rgba(11, 45, 69, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.open .accordion-trigger::after {
+            content: '\2212';
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 0 24px 20px;
+            font-size: 15px;
+            color: rgba(11, 45, 69, 0.6);
+            line-height: 1.6;
+        }
+
+        .accordion-item.open .accordion-content {
+            max-height: 200px;
+        }
+
+        /* ---------- REGISTRATION CTA ---------- */
+        .register-cta {
+            background: var(--teal);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .register-cta h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 40px;
+            color: var(--white);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--teal);
+            border-color: var(--white);
+        }
+
+        .btn-white:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid rgba(11, 45, 69, 0.08);
+            padding: 72px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            padding-bottom: 48px;
+        }
+
+        .footer-brand .footer-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .footer-brand .footer-tagline {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.5);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--seafoam);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            text-decoration: none;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .footer-social a:hover {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .footer-col h4 {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.55);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--teal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(11, 45, 69, 0.08);
+            padding: 20px 0;
+            text-align: center;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: rgba(11, 45, 69, 0.4);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .page-hero h1 {
+                font-size: 48px;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .schedule-table-wrap {
+                display: none;
+            }
+
+            .mobile-cards {
+                display: block;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .register-cta h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ 1. FIXED NAV ============ -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-left">
+            <a href="../" class="nav-logo">IFT</a>
+            <span class="nav-logo-sub">International Fishing Team</span>
+        </div>
+        <div class="nav-center">
+            <a href="../tournaments/" class="active">Tournaments</a>
+            <a href="../trips/">Trips</a>
+            <a href="../festival/">Festival</a>
+            <a href="../sponsors/">Sponsors</a>
+            <a href="../about/">About</a>
+        </div>
+        <div class="nav-right">
+            <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
+            <a href="mailto:info@brsskiandtours.com" class="nav-cta">Register Now</a>
+        </div>
+    </nav>
+
+    <!-- ============ 2. HERO ============ -->
+    <section class="page-hero">
+        <img src="../images/generated/event-tournament.jpg" alt="Tournament fishing in Puerto Rico" class="page-hero-img">
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <p class="eyebrow">Compete in Paradise</p>
+            <h1>Tournaments</h1>
+        </div>
+    </section>
+
+    <!-- ============ 3. TOURNAMENT SCHEDULE ============ -->
+    <section class="schedule-section">
+        <div class="container">
+            <h2 class="reveal">2026 Tournament Schedule</h2>
+
+            <!-- Desktop Table -->
+            <div class="schedule-table-wrap reveal">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Tournament</th>
+                            <th>Location</th>
+                            <th>Prize Pool</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="td-date">Jun 15, 2026</td>
+                            <td class="td-name">Summer Slam</td>
+                            <td class="td-location">San Juan, PR</td>
+                            <td class="td-prize">$10,000</td>
+                            <td><span class="status-badge status-open">Registration Open</span></td>
+                        </tr>
+                        <tr>
+                            <td class="td-date">Aug 22, 2026</td>
+                            <td class="td-name">Blue Marlin Classic</td>
+                            <td class="td-location">Fajardo, PR</td>
+                            <td class="td-prize">$25,000</td>
+                            <td><span class="status-badge status-upcoming">Upcoming</span></td>
+                        </tr>
+                        <tr>
+                            <td class="td-date">Sep 12, 2026</td>
+                            <td class="td-name">Dorado Derby</td>
+                            <td class="td-location">Rincon, PR</td>
+                            <td class="td-prize">$5,000</td>
+                            <td><span class="status-badge status-upcoming">Upcoming</span></td>
+                        </tr>
+                        <tr>
+                            <td class="td-date">Oct 3, 2026</td>
+                            <td class="td-name">Wahoo Open</td>
+                            <td class="td-location">Cabo Rojo, PR</td>
+                            <td class="td-prize">$8,000</td>
+                            <td><span class="status-badge status-upcoming">Upcoming</span></td>
+                        </tr>
+                        <tr>
+                            <td class="td-date">Nov 14, 2026</td>
+                            <td class="td-name">Festival Championship</td>
+                            <td class="td-location">Isla Verde, PR</td>
+                            <td class="td-prize">$50,000</td>
+                            <td><span class="status-badge status-upcoming">Upcoming</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mobile Cards -->
+            <div class="mobile-cards">
+                <div class="mobile-card reveal">
+                    <div class="mobile-card-top">
+                        <div>
+                            <div class="mobile-card-name">Summer Slam</div>
+                            <div class="mobile-card-date">Jun 15, 2026</div>
+                        </div>
+                        <span class="status-badge status-open">Registration Open</span>
+                    </div>
+                    <div class="mobile-card-bottom">
+                        <span class="mobile-card-location">San Juan, PR</span>
+                        <span class="mobile-card-prize">$10,000</span>
+                    </div>
+                </div>
+                <div class="mobile-card reveal">
+                    <div class="mobile-card-top">
+                        <div>
+                            <div class="mobile-card-name">Blue Marlin Classic</div>
+                            <div class="mobile-card-date">Aug 22, 2026</div>
+                        </div>
+                        <span class="status-badge status-upcoming">Upcoming</span>
+                    </div>
+                    <div class="mobile-card-bottom">
+                        <span class="mobile-card-location">Fajardo, PR</span>
+                        <span class="mobile-card-prize">$25,000</span>
+                    </div>
+                </div>
+                <div class="mobile-card reveal">
+                    <div class="mobile-card-top">
+                        <div>
+                            <div class="mobile-card-name">Dorado Derby</div>
+                            <div class="mobile-card-date">Sep 12, 2026</div>
+                        </div>
+                        <span class="status-badge status-upcoming">Upcoming</span>
+                    </div>
+                    <div class="mobile-card-bottom">
+                        <span class="mobile-card-location">Rincon, PR</span>
+                        <span class="mobile-card-prize">$5,000</span>
+                    </div>
+                </div>
+                <div class="mobile-card reveal">
+                    <div class="mobile-card-top">
+                        <div>
+                            <div class="mobile-card-name">Wahoo Open</div>
+                            <div class="mobile-card-date">Oct 3, 2026</div>
+                        </div>
+                        <span class="status-badge status-upcoming">Upcoming</span>
+                    </div>
+                    <div class="mobile-card-bottom">
+                        <span class="mobile-card-location">Cabo Rojo, PR</span>
+                        <span class="mobile-card-prize">$8,000</span>
+                    </div>
+                </div>
+                <div class="mobile-card reveal">
+                    <div class="mobile-card-top">
+                        <div>
+                            <div class="mobile-card-name">Festival Championship</div>
+                            <div class="mobile-card-date">Nov 14, 2026</div>
+                        </div>
+                        <span class="status-badge status-upcoming">Upcoming</span>
+                    </div>
+                    <div class="mobile-card-bottom">
+                        <span class="mobile-card-location">Isla Verde, PR</span>
+                        <span class="mobile-card-prize">$50,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 4. PAST RESULTS ============ -->
+    <section class="past-results">
+        <div class="container">
+            <h2 class="reveal">Past Results</h2>
+            <div class="accordion reveal">
+                <div class="accordion-item">
+                    <button class="accordion-trigger">2025 Championship</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Winner: Carlos Rivera — 487 lbs Blue Marlin
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-trigger">2024 Summer Slam</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Winner: Maria Santos — 312 lbs Yellowfin Tuna
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-trigger">2023 Festival Classic</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Winner: James Chen — 256 lbs Mahi-Mahi
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 5. REGISTRATION CTA ============ -->
+    <section class="register-cta">
+        <div class="container">
+            <h2 class="reveal">Ready to Compete?</h2>
+            <a href="mailto:info@brsskiandtours.com" class="btn btn-white btn-pill reveal">Register Now</a>
+        </div>
+    </section>
+
+    <!-- ============ 6. FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">IFT</div>
+                    <p class="footer-tagline">International Fishing Team<br>Puerto Rico's Premier Sport Fishing
+                        Experience</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <circle cx="12" cy="12" r="5" />
+                                <circle cx="17.5" cy="6.5" r="1.5" />
+                            </svg>
+                        </a>
+                        <a href="#" title="Facebook">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" title="TikTok">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 104 4V4a5 5 0 005 5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <a href="../tournaments/">Tournaments</a>
+                    <a href="../trips/">Trips</a>
+                    <a href="../festival/">Festival</a>
+                    <a href="../sponsors/">Sponsors</a>
+                    <a href="../about/">About</a>
+                    <a href="mailto:info@brsskiandtours.com">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="mailto:info@brsskiandtours.com">info@brsskiandtours.com</a>
+                    <a href="#">San Juan, Puerto Rico</a>
+                    <div style="margin-top: 16px;">
+                        <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 International Fishing Team &middot; Puerto Rico &middot; All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // ─── NAV SCROLL EFFECT ───
+            ScrollTrigger.create({
+                start: 'top -80',
+                onUpdate: function (self) {
+                    document.getElementById('mainNav').classList.toggle('scrolled', self.direction === 1 || window.scrollY > 80);
+                }
+            });
+
+            // ─── SCROLL REVEALS ───
+            var revealElements = document.querySelectorAll('.reveal');
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealElements.forEach(function (el) { revealObserver.observe(el); });
+
+            // ─── ACCORDION ───
+            var triggers = document.querySelectorAll('.accordion-trigger');
+            triggers.forEach(function (trigger) {
+                trigger.addEventListener('click', function () {
+                    var item = this.parentElement;
+                    var isOpen = item.classList.contains('open');
+                    // Close all
+                    document.querySelectorAll('.accordion-item').forEach(function (i) {
+                        i.classList.remove('open');
+                    });
+                    // Toggle clicked
+                    if (!isOpen) {
+                        item.classList.add('open');
+                    }
+                });
+            });
+
+            // ─── STAGGER MOBILE CARDS ───
+            var mobileCards = document.querySelectorAll('.mobile-card');
+            var cardObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        var idx = Array.prototype.indexOf.call(mobileCards, entry.target);
+                        setTimeout(function () {
+                            entry.target.classList.add('visible');
+                        }, idx * 100);
+                        cardObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            mobileCards.forEach(function (card) { cardObserver.observe(card); });
+        })();
+    </script>
+
+</body>
+
+</html>

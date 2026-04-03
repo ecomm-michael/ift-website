@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Fishing Festival 2026 — August 1-2, Dorado, Puerto Rico</title>
+    <meta name="description" content="Join us for the biggest fishing festival in Puerto Rico. Live music, local food, artisans, fishing competitions, and family fun. August 1-2, 2026 at Club Deportivo, Dorado.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --navy: #0B2D45;
+            --teal: #0099B5;
+            --turquoise: #00C4CC;
+            --gold: #F5A623;
+            --coral: #E84E3A;
+            --seafoam: #EDF7F9;
+            --sandy: #F9F4E8;
+            --white: #FFFFFF;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            color: var(--navy);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ---------- UTILITIES ---------- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section-pad {
+            padding: 100px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-teal {
+            background: var(--teal);
+            color: var(--white);
+            border-color: var(--teal);
+        }
+
+        .btn-teal:hover {
+            background: #007a91;
+            border-color: #007a91;
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--white);
+        }
+
+        .btn-outline-teal {
+            background: transparent;
+            color: var(--teal);
+            border-color: var(--teal);
+        }
+
+        .btn-outline-teal:hover {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .btn-navy {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        .btn-navy:hover {
+            background: #0a2438;
+            border-color: #0a2438;
+        }
+
+        .btn-pill {
+            border-radius: 999px;
+        }
+
+        /* ---------- SCROLL REVEAL ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- NAV ---------- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: var(--white);
+            border-bottom: 1px solid rgba(11, 45, 69, 0.08);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 2px 24px rgba(11, 45, 69, 0.1);
+            border-bottom-color: rgba(11, 45, 69, 0.12);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo-sub {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            color: var(--navy);
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+
+        .nav-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 36px;
+        }
+
+        .nav-center a {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-center a:hover,
+        .nav-center a.active {
+            color: var(--teal);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        .lang-switch {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            color: var(--navy);
+            opacity: 0.45;
+            letter-spacing: 1px;
+        }
+
+        .lang-switch span {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .lang-switch span:hover {
+            opacity: 1;
+        }
+
+        .lang-switch .active {
+            opacity: 1;
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            background: var(--teal);
+            color: var(--white);
+            padding: 9px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #007a91;
+        }
+
+        /* ---------- HERO ---------- */
+        .page-hero {
+            position: relative;
+            width: 100%;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            overflow: hidden;
+            margin-top: 64px;
+        }
+
+        .page-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .page-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 45, 69, 0.85) 0%, rgba(11, 45, 69, 0.4) 50%, rgba(11, 45, 69, 0.3) 100%);
+            z-index: 1;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: var(--white);
+            padding: 80px 32px;
+            max-width: 800px;
+        }
+
+        .page-hero-label {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 5px;
+            color: var(--gold);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .page-hero-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 72px;
+            line-height: 0.95;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 40px rgba(11, 45, 69, 0.3);
+        }
+
+        .page-hero-sub {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            opacity: 0.85;
+            margin-bottom: 36px;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- SECTION HEADINGS ---------- */
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .section-subtitle {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: rgba(11, 45, 69, 0.6);
+            max-width: 640px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
+        }
+
+        /* ---------- OVERVIEW ---------- */
+        .overview-text {
+            font-family: 'Barlow', sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(11, 45, 69, 0.7);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* ---------- SCHEDULE TIMELINE ---------- */
+        .schedule-section {
+            background: var(--seafoam);
+        }
+
+        .schedule-days {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .schedule-day {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(11, 45, 69, 0.06);
+        }
+
+        .schedule-day-header {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .schedule-day-date {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--teal);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(11, 45, 69, 0.06);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-time {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--teal);
+            white-space: nowrap;
+            min-width: 80px;
+        }
+
+        .timeline-label {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--navy);
+        }
+
+        .timeline-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        /* ---------- PHOTO GRID ---------- */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-card-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(11, 45, 69, 0.8) 0%, transparent 100%);
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+
+        /* ---------- POSTER ---------- */
+        .poster-section {
+            background: var(--sandy);
+        }
+
+        .poster-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(11, 45, 69, 0.15);
+            margin-top: 48px;
+        }
+
+        .poster-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ---------- LOCATION ---------- */
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .location-info h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .location-info p {
+            font-family: 'Barlow', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: rgba(11, 45, 69, 0.65);
+            margin-bottom: 16px;
+        }
+
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .location-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--navy);
+        }
+
+        .location-detail svg {
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .location-map-placeholder {
+            background: var(--seafoam);
+            border-radius: 12px;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            color: rgba(11, 45, 69, 0.3);
+            font-size: 15px;
+            border: 2px dashed rgba(11, 45, 69, 0.1);
+        }
+
+        /* ---------- CTA ---------- */
+        .cta-section {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .cta-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 56px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .cta-text {
+            font-family: 'Barlow', sans-serif;
+            font-size: 18px;
+            opacity: 0.7;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid rgba(11, 45, 69, 0.08);
+            padding: 72px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            padding-bottom: 48px;
+        }
+
+        .footer-brand .footer-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .footer-brand .footer-tagline {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.5);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--seafoam);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            text-decoration: none;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .footer-social a:hover {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .footer-col h4 {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.55);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--teal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(11, 45, 69, 0.08);
+            padding: 20px 0;
+            text-align: center;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: rgba(11, 45, 69, 0.4);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .page-hero-title {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .schedule-days {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-title {
+                font-size: 40px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-center {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-hero-title {
+                font-size: 36px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .schedule-day {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ NAV ============ -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-left">
+            <a href="../" class="nav-logo">IFT</a>
+            <span class="nav-logo-sub">International Fishing Team</span>
+        </div>
+        <div class="nav-center">
+            <a href="../tournaments/">Tournaments</a>
+            <a href="../trips/">Trips</a>
+            <a href="../festival/" class="active">Festival</a>
+            <a href="../sponsors/">Sponsors</a>
+            <a href="../about/">About</a>
+        </div>
+        <div class="nav-right">
+            <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
+            <a href="#tickets" class="nav-cta">Get Tickets</a>
+        </div>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <section class="page-hero">
+        <div class="page-hero-bg" style="background-image: url('../images/generated/event-festival.jpg');"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+            <div class="page-hero-label">August 1&ndash;2, 2026 &middot; Dorado, Puerto Rico</div>
+            <h1 class="page-hero-title">International Fishing Festival 2026</h1>
+            <p class="page-hero-sub">Two days of live music, local food, artisan markets, fishing competitions, and Caribbean celebration on the shores of Dorado.</p>
+            <div class="hero-buttons">
+                <a href="#tickets" class="btn btn-teal">Get Tickets</a>
+                <a href="#schedule" class="btn btn-outline-white">View Schedule</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FESTIVAL OVERVIEW ============ -->
+    <section class="section-pad text-center">
+        <div class="container">
+            <div class="reveal">
+                <span class="eyebrow" style="color: var(--teal);">The Biggest Fishing Festival in Puerto Rico</span>
+                <h2 class="section-title">More Than a Tournament</h2>
+            </div>
+            <p class="overview-text reveal">
+                The International Fishing Festival is Puerto Rico's premier celebration of sport fishing culture. Set against the stunning coastline of Dorado, the festival brings together anglers, families, and the local community for two unforgettable days. Enjoy live music from top Caribbean artists, savor dishes from the island's best food vendors, browse handcrafted goods from local artisans, and cheer on anglers in competitive fishing weigh-ins. Whether you're a seasoned fisherman or here for the party, there's something for everyone.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ SCHEDULE TIMELINE ============ -->
+    <section class="section-pad schedule-section" id="schedule">
+        <div class="container text-center">
+            <div class="reveal">
+                <span class="eyebrow" style="color: var(--teal);">Event Schedule</span>
+                <h2 class="section-title">Two Days of Festival</h2>
+                <p class="section-subtitle">From competitive weigh-ins to live music under the stars, here's what to expect each day.</p>
+            </div>
+            <div class="schedule-days">
+                <div class="schedule-day reveal">
+                    <div class="schedule-day-header">Day One</div>
+                    <div class="schedule-day-date">Saturday, August 1 &middot; 3:00 PM &ndash; 10:00 PM</div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">3:00 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Gates Open</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">4:00 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Fishing Weigh-In Competition</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">3:00 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Food &amp; Artisan Market Opens</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">6:00 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Live Music</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">9:00 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Awards Ceremony</div>
+                    </div>
+                </div>
+                <div class="schedule-day reveal">
+                    <div class="schedule-day-header">Day Two</div>
+                    <div class="schedule-day-date">Sunday, August 2 &middot; 1:00 PM &ndash; 7:00 PM</div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">1:00 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Gates Open</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">1:30 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Kids Fishing Clinic</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">1:00 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Food &amp; Market Opens</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">3:00 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Live Music</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-time">6:30 PM</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">Closing Celebration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PHOTO GRID ============ -->
+    <section class="section-pad">
+        <div class="container text-center">
+            <div class="reveal">
+                <span class="eyebrow" style="color: var(--teal);">Festival Life</span>
+                <h2 class="section-title">Experience the Vibe</h2>
+            </div>
+            <div class="photo-grid">
+                <div class="photo-card reveal">
+                    <img src="../images/festival-food.jpg" alt="Local food trucks and vendors at the festival" loading="lazy">
+                    <div class="photo-card-caption">Local Food &amp; Flavors</div>
+                </div>
+                <div class="photo-card reveal">
+                    <img src="../images/festival-artisan.jpg" alt="Artisan vendor showcasing handcrafted goods" loading="lazy">
+                    <div class="photo-card-caption">Artisan Market</div>
+                </div>
+                <div class="photo-card reveal">
+                    <img src="../images/festival-crowd.jpg" alt="Festival crowd enjoying live entertainment" loading="lazy">
+                    <div class="photo-card-caption">Live Entertainment</div>
+                </div>
+                <div class="photo-card reveal">
+                    <img src="../images/festival-community.jpg" alt="Friends and families enjoying the festival" loading="lazy">
+                    <div class="photo-card-caption">Community &amp; Family Fun</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FESTIVAL POSTER ============ -->
+    <section class="section-pad poster-section">
+        <div class="container text-center">
+            <div class="reveal">
+                <span class="eyebrow" style="color: var(--teal);">Official Poster</span>
+                <h2 class="section-title">Spread the Word</h2>
+                <p class="section-subtitle">Share the festival poster with your friends and fishing crew. See you in Dorado!</p>
+            </div>
+            <div class="poster-wrapper reveal">
+                <img src="../images/festival-teaser.png" alt="International Fishing Festival 2026 official poster" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ LOCATION ============ -->
+    <section class="section-pad">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="eyebrow" style="color: var(--teal);">Festival Venue</span>
+                <h2 class="section-title">Where It Happens</h2>
+            </div>
+            <div class="location-content">
+                <div class="location-info reveal">
+                    <h3>Club Deportivo<br>Villa Pesquera</h3>
+                    <p>
+                        Nestled on the beautiful coast of Dorado, Puerto Rico, Club Deportivo at Villa Pesquera is the perfect beachside venue for the International Fishing Festival. With ample parking, waterfront views, and easy access from San Juan (just 30 minutes west on PR-22), the venue offers an unforgettable setting for two days of fishing, food, and celebration.
+                    </p>
+                    <div class="location-details">
+                        <div class="location-detail">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Dorado, Puerto Rico
+                        </div>
+                        <div class="location-detail">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            August 1&ndash;2, 2026
+                        </div>
+                        <div class="location-detail">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                            Free Parking Available
+                        </div>
+                    </div>
+                </div>
+                <div class="location-map-placeholder reveal">
+                    Map coming soon
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section-pad cta-section" id="tickets">
+        <div class="container text-center">
+            <div class="reveal">
+                <span class="eyebrow" style="color: var(--gold);">August 1&ndash;2, 2026</span>
+                <h2 class="cta-title">Don't Miss Out</h2>
+                <p class="cta-text">Be the first to know about tickets, lineup announcements, and festival updates. Join our mailing list or reach out to the team directly.</p>
+                <div class="hero-buttons">
+                    <a href="mailto:info@brsskiandtours.com?subject=Festival%202026%20Inquiry" class="btn btn-teal">Contact Us</a>
+                    <a href="../" class="btn btn-outline-white">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">IFT</div>
+                    <p class="footer-tagline">International Fishing Team<br>Puerto Rico's Premier Sport Fishing
+                        Experience</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <circle cx="12" cy="12" r="5" />
+                                <circle cx="17.5" cy="6.5" r="1.5" />
+                            </svg>
+                        </a>
+                        <a href="#" title="Facebook">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" title="TikTok">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 104 4V4a5 5 0 005 5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <a href="../tournaments/">Tournaments</a>
+                    <a href="../trips/">Trips</a>
+                    <a href="../festival/">Festival</a>
+                    <a href="../sponsors/">Sponsors</a>
+                    <a href="../about/">About</a>
+                    <a href="mailto:info@brsskiandtours.com">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="mailto:info@brsskiandtours.com">info@brsskiandtours.com</a>
+                    <a href="#">San Juan, Puerto Rico</a>
+                    <div style="margin-top: 16px;">
+                        <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 International Fishing Team &middot; Puerto Rico &middot; All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Nav scroll effect
+            var nav = document.getElementById('mainNav');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 20) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Scroll reveal animations
+            var reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(function (el, i) {
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: 'top 85%',
+                    onEnter: function () {
+                        gsap.to(el, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.7,
+                            delay: i % 3 * 0.1,
+                            ease: 'power2.out'
+                        });
+                        el.classList.add('visible');
+                    },
+                    once: true
+                });
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
