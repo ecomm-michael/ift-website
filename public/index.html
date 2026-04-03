@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Fishing Team — Puerto Rico's Premier Sport Fishing Experience</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --navy: #0B2D45;
+            --teal: #0099B5;
+            --turquoise: #00C4CC;
+            --gold: #F5A623;
+            --coral: #E84E3A;
+            --seafoam: #EDF7F9;
+            --sandy: #F9F4E8;
+            --white: #FFFFFF;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            color: var(--navy);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ---------- UTILITIES ---------- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section-pad {
+            padding: 100px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-teal {
+            background: var(--teal);
+            color: var(--white);
+            border-color: var(--teal);
+        }
+
+        .btn-teal:hover {
+            background: #007a91;
+            border-color: #007a91;
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--white);
+        }
+
+        .btn-outline-teal {
+            background: transparent;
+            color: var(--teal);
+            border-color: var(--teal);
+        }
+
+        .btn-outline-teal:hover {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .btn-navy {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        .btn-navy:hover {
+            background: #0a2438;
+            border-color: #0a2438;
+        }
+
+        .btn-pill {
+            border-radius: 999px;
+        }
+
+        /* ---------- SCROLL REVEAL ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- 1. FIXED NAV ---------- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: var(--white);
+            border-bottom: 1px solid rgba(11, 45, 69, 0.08);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 2px 24px rgba(11, 45, 69, 0.1);
+            border-bottom-color: rgba(11, 45, 69, 0.12);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo-sub {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            color: var(--navy);
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+
+        .nav-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 36px;
+        }
+
+        .nav-center a {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-center a:hover {
+            color: var(--teal);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        .lang-switch {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            color: var(--navy);
+            opacity: 0.45;
+            letter-spacing: 1px;
+        }
+
+        .lang-switch span {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .lang-switch span:hover {
+            opacity: 1;
+        }
+
+        .lang-switch .active {
+            opacity: 1;
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            background: var(--teal);
+            color: var(--white);
+            padding: 9px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #007a91;
+        }
+
+        /* ---------- 2. CINEMATIC HERO (SCROLL-LOCKED WITH VIDEO) ---------- */
+        #hero-pin-wrapper {
+            position: relative;
+            height: 400vh;
+            /* scroll distance for pinning / video scrub */
+        }
+
+        #hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 700px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            /* always dark — never white flash */
+        }
+
+        /* Video element — full bleed behind everything */
+        #hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Dark gradient overlay on top of video so text reads cleanly */
+        .hero-video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.1) 100%);
+            z-index: 1;
+        }
+
+        /* Fallback gradient background layers — visible by default, hidden once video loads */
+        .hero-fallback-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            display: block;
+            /* always visible until video confirms loaded */
+            transition: opacity 0.6s ease;
+        }
+
+        .hero-fallback-bg.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .hero-fallback-layer-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(175deg,
+                    #F5C962 0%, #F5A623 8%, #3dc4c9 22%, #00C4CC 32%,
+                    #0099B5 50%, #0B5575 70%, #0B2D45 100%);
+        }
+
+        .hero-fallback-layer-mid {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: radial-gradient(ellipse at 50% 20%, rgba(245, 166, 35, 0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 70%, rgba(0, 153, 181, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(0, 196, 204, 0.15) 0%, transparent 40%);
+        }
+
+        .hero-fallback-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 45, 69, 0.55) 0%, rgba(11, 45, 69, 0.15) 40%, transparent 70%);
+            z-index: 4;
+        }
+
+        /* Hero progress bar */
+        .hero-progress {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 2px;
+            z-index: 20;
+            overflow: hidden;
+        }
+
+        .hero-progress-fill {
+            width: 100%;
+            height: 0%;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: height 0.1s linear;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: var(--white);
+            padding: 0 32px;
+        }
+
+        .hero-label-text {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 5px;
+            color: var(--gold);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        /* Hero headline animations */
+        .hero-headline {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 96px;
+            line-height: 0.95;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            text-shadow: 0 4px 40px rgba(11, 45, 69, 0.3);
+        }
+
+        .hero-line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-line-inner {
+            display: block;
+            opacity: 0;
+        }
+
+        .hero-line-1 .hero-line-inner {
+            transform: translateX(-100%);
+            animation: slideFromLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .hero-line-2 .hero-line-inner {
+            transform: translateX(100%);
+            animation: slideFromRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        @keyframes slideFromLeft {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideFromRight {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .hero-sub {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.9s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 1.2s forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 60px;
+            left: 40px;
+            z-index: 20;
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.5));
+        }
+
+        .scroll-text {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.45);
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            z-index: 20;
+            animation: bounceArrow 2s ease-in-out infinite;
+        }
+
+        .scroll-arrow svg {
+            width: 24px;
+            height: 24px;
+            opacity: 0.45;
+        }
+
+        @keyframes bounceArrow {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        /* Marlin SVG */
+        .hero-marlin {
+            position: absolute;
+            z-index: 5;
+            opacity: 0;
+            width: 380px;
+            height: auto;
+            bottom: -100px;
+            right: -5%;
+            transform: rotate(-15deg);
+        }
+
+        /* ---------- 3. TAGLINE REVEAL ---------- */
+        .tagline {
+            background: var(--white);
+            position: relative;
+        }
+
+        .tagline-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 32px;
+        }
+
+        .tagline-rule {
+            width: 60px;
+            height: 2px;
+            background: var(--teal);
+            margin: 0 auto 40px;
+        }
+
+        .tagline-rule-bottom {
+            margin: 40px auto 0;
+        }
+
+        .tagline h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 52px;
+            color: var(--navy);
+            line-height: 1.1;
+            max-width: 700px;
+            margin: 0 auto 24px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline p {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 17px;
+            color: rgba(11, 45, 69, 0.65);
+            line-height: 1.7;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        /* ---------- 4. STATS (ODOMETER) ---------- */
+        .stats {
+            background: var(--white);
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px 32px;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: rgba(11, 45, 69, 0.1);
+        }
+
+        .stat-number {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 80px;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-number.gold {
+            color: var(--gold);
+        }
+
+        .stat-number.teal {
+            color: var(--teal);
+        }
+
+        .stat-number.navy {
+            color: var(--navy);
+        }
+
+        /* Odometer digit */
+        .odometer {
+            display: inline-flex;
+            justify-content: center;
+            overflow: hidden;
+            height: 1.15em;
+        }
+
+        .odo-digit {
+            display: inline-block;
+            overflow: hidden;
+            height: 1.15em;
+            position: relative;
+        }
+
+        .odo-strip {
+            display: flex;
+            flex-direction: column;
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .odo-strip span {
+            display: block;
+            height: 1.15em;
+            line-height: 1.15;
+        }
+
+        .stat-suffix {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            vertical-align: top;
+        }
+
+        .stat-label {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(11, 45, 69, 0.5);
+        }
+
+        /* ---------- KINETIC MARQUEE ---------- */
+        .marquee-section {
+            padding: 24px 0;
+            overflow: hidden;
+            background: var(--navy);
+        }
+
+        .marquee-row {
+            display: flex;
+            white-space: nowrap;
+            will-change: transform;
+            padding: 12px 0;
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: clamp(28px, 5vw, 48px);
+            letter-spacing: -0.02em;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 0 32px;
+            text-transform: uppercase;
+        }
+
+        .marquee-item .sep {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            margin: 0 24px;
+            opacity: 0.6;
+        }
+
+        /* ---------- 5. THREE PILLARS (STICKY CARDS) ---------- */
+        .pillars-section {
+            padding: 0;
+        }
+
+        .pillar-progress {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .pillar-progress.visible {
+            opacity: 1;
+        }
+
+        .pillar-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .pillar-dot.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: scale(1.3);
+        }
+
+        .pillar-line {
+            width: 2px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .pillar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            will-change: transform;
+        }
+
+        .pillar-content {
+            position: relative;
+            z-index: 3;
+            max-width: 700px;
+            padding: 80px 64px;
+        }
+
+        .pillar-watermark {
+            position: absolute;
+            top: 50%;
+            right: 8%;
+            transform: translateY(-50%);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 260px;
+            color: rgba(255, 255, 255, 0.07);
+            z-index: 1;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .pillar-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+        }
+
+        .pillar h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 60px;
+            text-transform: uppercase;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .pillar p {
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .pillar-tournaments {
+            background: linear-gradient(rgba(11,45,69,0.65), rgba(11,45,69,0.75)), url('/images/pillar-tournaments.jpg') center/cover no-repeat;
+            color: var(--white);
+            z-index: 1;
+        }
+
+        .pillar-trips {
+            background: linear-gradient(rgba(0,153,181,0.55), rgba(11,45,69,0.7)), url('/images/generated/pillar-trips.jpg') center/cover no-repeat;
+            color: var(--white);
+            z-index: 2;
+        }
+
+        .pillar-festival {
+            background: linear-gradient(rgba(249,244,232,0.5), rgba(245,166,35,0.55)), url('/images/pillar-festival.jpg') center/cover no-repeat;
+            color: var(--navy);
+            z-index: 3;
+        }
+
+        /* ---------- 6. UPCOMING EVENTS ---------- */
+        .events {
+            background: var(--seafoam);
+            position: relative;
+        }
+
+        .events-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 56px;
+        }
+
+        .events-header h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 42px;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: -0.3px;
+        }
+
+        .season-badge {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--teal);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 999px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 36px 32px;
+            box-shadow: 0 4px 24px rgba(11, 45, 69, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+            overflow: hidden;
+        }
+
+        .event-card-image {
+            width: calc(100% + 64px);
+            height: 180px;
+            border-radius: 12px 12px 0 0;
+            margin: -36px -32px 20px -32px;
+            flex-shrink: 0;
+        }
+
+        .event-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(11, 45, 69, 0.12);
+        }
+
+        .event-date {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        .event-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 26px;
+            color: var(--navy);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: -0.2px;
+        }
+
+        .event-location {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.55);
+            margin-bottom: 8px;
+        }
+
+        .event-prize {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .event-card .btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        /* ---------- 7. ABOUT ---------- */
+        .about {
+            background: var(--white);
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 48px;
+            color: var(--navy);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: rgba(11, 45, 69, 0.65);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .about-text a {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--teal);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .about-text a:hover {
+            color: #007a91;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 480px;
+            border-radius: 12px;
+            background: url('/images/about-founders.jpg') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ---------- 7.5 PHOTO GALLERY STRIP ---------- */
+        .gallery-strip {
+            padding: 0;
+            overflow: hidden;
+            background: var(--navy);
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 8px;
+            animation: gallery-scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        .gallery-track img {
+            height: 280px;
+            width: auto;
+            object-fit: cover;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        @keyframes gallery-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .gallery-strip:hover .gallery-track {
+            animation-play-state: paused;
+        }
+
+        /* ---------- 8. SPONSORS ---------- */
+        .sponsors {
+            background: var(--sandy);
+            position: relative;
+        }
+
+        .sponsors h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 42px;
+            color: var(--navy);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 56px;
+            letter-spacing: -0.3px;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .sponsor-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 36px 28px 32px;
+            box-shadow: 0 4px 24px rgba(11, 45, 69, 0.06);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .sponsor-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(11, 45, 69, 0.1);
+        }
+
+        .sponsor-card.gold-accent {
+            border-top-color: var(--gold);
+        }
+
+        .sponsor-tier {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .sponsor-price {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: rgba(11, 45, 69, 0.4);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .sponsor-benefits {
+            list-style: none;
+            margin-bottom: 28px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .sponsor-benefits li {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.65);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(11, 45, 69, 0.06);
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .sponsor-benefits li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+        }
+
+        .sponsor-card .btn {
+            align-self: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ---------- 9. EMAIL CAPTURE ---------- */
+        .email-capture {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-capture::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 153, 181, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .email-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .email-capture h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+        }
+
+        .email-capture .bilingual {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.35);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .email-capture .sub {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0;
+            max-width: 480px;
+            margin: 0 auto 16px;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 15px;
+            outline: none;
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        .email-form input::placeholder {
+            color: rgba(11, 45, 69, 0.35);
+        }
+
+        .email-form button {
+            padding: 14px 28px;
+            background: var(--teal);
+            color: var(--white);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .email-form button:hover {
+            background: #007a91;
+        }
+
+        .email-capture .disclaimer {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ---------- 10. FOOTER ---------- */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid rgba(11, 45, 69, 0.08);
+            padding: 72px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            padding-bottom: 48px;
+        }
+
+        .footer-brand .footer-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .footer-brand .footer-tagline {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.5);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--seafoam);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            text-decoration: none;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .footer-social a:hover {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .footer-col h4 {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: rgba(11, 45, 69, 0.55);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--teal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(11, 45, 69, 0.08);
+            padding: 20px 0;
+            text-align: center;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: rgba(11, 45, 69, 0.4);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .hero-headline {
+                font-size: 56px;
+            }
+
+            .events-grid,
+            .sponsors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .pillar h3 {
+                font-size: 42px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-item:not(:last-child)::after {
+                display: none;
+            }
+
+            .stat-item {
+                padding: 24px;
+            }
+
+            .pillar-progress {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ 1. FIXED NAV ============ -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-left">
+            <a href="#" class="nav-logo">IFT</a>
+            <span class="nav-logo-sub">International Fishing Team</span>
+        </div>
+        <div class="nav-center">
+            <a href="#tournaments">Tournaments</a>
+            <a href="#trips">Trips</a>
+            <a href="#festival">Festival</a>
+            <a href="#sponsors">Sponsors</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="nav-right">
+            <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
+            <a href="#" class="nav-cta">Register Now</a>
+        </div>
+    </nav>
+
+    <!-- ============ 2. CINEMATIC HERO (VIDEO SCROLL-SCRUB) ============ -->
+    <div id="hero-pin-wrapper">
+        <section id="hero-section">
+            <!-- Canvas for frame-scrubbing hero -->
+            <canvas id="hero-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;"></canvas>
+
+            <!-- Fallback gradient layers (shown only if video fails) -->
+            <div class="hero-fallback-bg" id="heroFallbackBg">
+                <div class="hero-fallback-layer-bg"></div>
+                <div class="hero-fallback-layer-mid"></div>
+                <div class="hero-fallback-overlay"></div>
+            </div>
+
+            <!-- Dark gradient overlay on top of video for text legibility -->
+            <div class="hero-video-overlay"></div>
+
+            <!-- Progress bar -->
+            <div class="hero-progress">
+                <div class="hero-progress-fill" id="heroProgressFill"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="hero-content">
+                <div class="hero-label-text">Puerto Rico &middot; Caribbean</div>
+                <h1 class="hero-headline">
+                    <span class="hero-line hero-line-1"><span class="hero-line-inner">Born to Fish.</span></span>
+                    <span class="hero-line hero-line-2"><span class="hero-line-inner">Built to Win.</span></span>
+                </h1>
+                <p class="hero-sub">Puerto Rico's Premier Sport Fishing Experience &mdash; Tournaments, Trips &amp;
+                    Festivals</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-teal">View 2026 Tournaments</a>
+                    <a href="#" class="btn btn-outline-white">Explore Trips</a>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+                <span class="scroll-text">Scroll to Explore</span>
+            </div>
+            <div class="scroll-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+
+            <!-- Blue Marlin SVG -->
+            <svg class="hero-marlin" id="heroMarlin" viewBox="0 0 400 220" fill="white"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M10,140 Q20,135 35,120 Q50,100 60,95 Q55,85 50,70 Q48,60 55,55 Q65,65 70,80 Q75,70 85,60 Q95,50 110,45 Q105,35 100,20 Q98,12 105,10 Q112,18 115,30 Q120,45 125,50 Q140,38 160,30 Q180,22 200,20 Q230,17 260,25 Q290,33 310,50 Q330,67 345,90 Q355,105 360,115 L395,108 Q385,115 365,120 Q358,128 348,135 Q330,148 305,155 Q280,160 255,160 Q230,158 210,150 Q195,155 175,162 Q155,168 140,168 Q120,167 105,160 Q90,165 72,170 Q55,175 45,172 Q50,165 60,160 Q45,162 30,160 Q15,157 10,150 Z" />
+                <circle cx="280" cy="60" r="5" fill="rgba(11,45,69,0.15)" />
+            </svg>
+        </section>
+    </div>
+
+    <!-- ============ 3. TAGLINE REVEAL ============ -->
+    <section class="tagline section-pad">
+        <div class="tagline-inner">
+            <div class="eyebrow reveal" style="color: var(--teal);">Est. Puerto Rico</div>
+            <div class="tagline-rule reveal"></div>
+            <h2 class="reveal">The Premier Sport Fishing Experience in the Caribbean</h2>
+            <p class="reveal">Where world-class deep-sea fishing meets Caribbean culture. From competitive tournaments
+                to all-inclusive trips, IFT brings anglers together on the waters of Puerto Rico for unforgettable
+                experiences year-round.</p>
+            <div class="tagline-rule tagline-rule-bottom reveal"></div>
+        </div>
+    </section>
+
+    <!-- ============ 4. STATS (ODOMETER) ============ -->
+    <section class="stats section-pad" style="padding-top: 40px;">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number gold odometer" data-value="50000" data-prefix="$" data-suffix="+">
+                        <span class="stat-suffix" style="font-size: inherit; color: inherit;">$0+</span>
+                    </div>
+                    <div class="stat-label">Annual Prize Pool</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number teal odometer" data-value="500" data-suffix="+">
+                        <span class="stat-suffix" style="font-size: inherit; color: inherit;">0+</span>
+                    </div>
+                    <div class="stat-label">Registered Anglers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number navy odometer" data-value="12">
+                        <span class="stat-suffix" style="font-size: inherit; color: inherit;">0</span>
+                    </div>
+                    <div class="stat-label">Annual Events</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ KINETIC MARQUEE ============ -->
+    <section class="marquee-section">
+        <div class="marquee-row" data-speed="0.8" data-direction="left">
+            <div class="marquee-content">
+                <span class="marquee-item">TOURNAMENTS<span class="sep"></span></span>
+                <span class="marquee-item">TRIPS<span class="sep"></span></span>
+                <span class="marquee-item">FESTIVAL<span class="sep"></span></span>
+                <span class="marquee-item">PUERTO RICO<span class="sep"></span></span>
+                <span class="marquee-item">2026 SEASON<span class="sep"></span></span>
+                <span class="marquee-item">SPORT FISHING<span class="sep"></span></span>
+                <span class="marquee-item">CARIBBEAN<span class="sep"></span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 5. THREE PILLARS (STICKY CARDS) ============ -->
+    <div class="pillars-section" id="pillarsSection">
+        <!-- Progress dots -->
+        <div class="pillar-progress" id="pillarProgress">
+            <div class="pillar-dot active" data-index="0"></div>
+            <div class="pillar-line"></div>
+            <div class="pillar-dot" data-index="1"></div>
+            <div class="pillar-line"></div>
+            <div class="pillar-dot" data-index="2"></div>
+        </div>
+
+        <!-- TOURNAMENTS -->
+        <section class="pillar pillar-tournaments" id="tournaments">
+            <div class="pillar-watermark">01</div>
+            <div class="pillar-content">
+                <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 6h20v4c0 8-4 16-10 18C18 26 14 18 14 10V6z" stroke="#F5A623" stroke-width="2.5"
+                        fill="none" />
+                    <path d="M14 10H8c0 6 3 10 6 12" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" />
+                    <path d="M34 10h6c0 6-3 10-6 12" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" />
+                    <rect x="20" y="28" width="8" height="6" rx="1" stroke="#F5A623" stroke-width="2.5" />
+                    <rect x="16" y="34" width="16" height="4" rx="2" stroke="#F5A623" stroke-width="2.5" />
+                </svg>
+                <h3>Compete. Win.<br>Repeat.</h3>
+                <p>Enter Puerto Rico's most competitive fishing tournaments. Prize pools up to $50,000. All skill levels
+                    welcome &mdash; from weekend warriors to seasoned pros chasing billfish glory.</p>
+                <a href="#" class="btn btn-outline-white">View Tournaments &rarr;</a>
+            </div>
+        </section>
+
+        <!-- TRIPS -->
+        <section class="pillar pillar-trips" id="trips">
+            <div class="pillar-watermark">02</div>
+            <div class="pillar-content">
+                <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="10" r="4" stroke="white" stroke-width="2.5" />
+                    <line x1="24" y1="14" x2="24" y2="40" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="16" y1="20" x2="32" y2="20" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    <path d="M8 32c4 6 10 10 16 10s12-4 16-10" stroke="white" stroke-width="2.5" stroke-linecap="round"
+                        fill="none" />
+                </svg>
+                <h3>Fish. Feast.<br>Repeat.</h3>
+                <p>All-inclusive fishing trips with lodging, meals, gear, and expert guides included. Leave the planning
+                    to us &mdash; just show up and fish. Starting at $899/person.</p>
+                <a href="#" class="btn btn-outline-white">Explore Trips &rarr;</a>
+            </div>
+        </section>
+
+        <!-- FESTIVAL -->
+        <section class="pillar pillar-festival" id="festival">
+            <div class="pillar-watermark" style="color: rgba(11,45,69,0.05);">03</div>
+            <div class="pillar-content">
+                <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4l5.5 12.5L43 18l-10 9 3 13.5L24 34l-12 6.5 3-13.5-10-9 13.5-1.5Z" stroke="#0B2D45"
+                        stroke-width="2.5" fill="none" stroke-linejoin="round" />
+                </svg>
+                <h3>The Biggest Fishing Festival in Puerto Rico.</h3>
+                <p>Live music, local food, fishing competitions, and community. Family-friendly and open to all. An
+                    annual celebration of Caribbean fishing culture you won't want to miss.</p>
+                <a href="#" class="btn btn-navy">Festival Details &rarr;</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ 6. UPCOMING EVENTS ============ -->
+    <section class="events section-pad">
+        <div class="container">
+            <div class="events-header">
+                <h2 class="reveal">Upcoming Events</h2>
+                <span class="season-badge reveal">2026 Season</span>
+            </div>
+            <div class="events-grid">
+                <div class="event-card" data-stagger="0">
+                    <div class="event-card-image" style="background: url('/images/generated/event-classic.jpg') center/cover no-repeat;"></div>
+                    <div class="event-date">June 14, 2026</div>
+                    <div class="event-title">Marlin Open 2026</div>
+                    <div class="event-location">Fajardo, Puerto Rico</div>
+                    <div class="event-prize">$15,000 Prize Pool</div>
+                    <a href="#" class="btn btn-teal btn-pill">Register</a>
+                </div>
+                <div class="event-card" data-stagger="1">
+                    <div class="event-card-image" style="background: url('/images/generated/event-festival.jpg') center/cover no-repeat;"></div>
+                    <div class="event-date">August 2026</div>
+                    <div class="event-title">IFT Annual Festival</div>
+                    <div class="event-location">San Juan, Puerto Rico</div>
+                    <div class="event-prize">Family Event &middot; All Ages</div>
+                    <a href="#" class="btn btn-outline-teal btn-pill">Learn More</a>
+                </div>
+                <div class="event-card" data-stagger="2">
+                    <div class="event-card-image" style="background: url('/images/generated/event-tournament.jpg') center/cover no-repeat;"></div>
+                    <div class="event-date">October 2026</div>
+                    <div class="event-title">Blue Marlin Classic</div>
+                    <div class="event-location">Humacao, Puerto Rico</div>
+                    <div class="event-prize">$25,000 Prize Pool</div>
+                    <a href="#" class="btn btn-teal btn-pill">Register</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 7. ABOUT ============ -->
+    <section class="about section-pad" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="eyebrow reveal" style="color: var(--teal);">Our Story</div>
+                    <h3 class="reveal">Born from a love of the sea.</h3>
+                    <p class="reveal">The International Fishing Team started with a simple belief: the waters of Puerto
+                        Rico deserve a world-class sport fishing organization. One that competes at the highest level
+                        while staying rooted in the culture and community of the Caribbean.</p>
+                    <p class="reveal">From our first tournament off the coast of Fajardo to a growing calendar of twelve
+                        annual events, IFT has become the home for serious anglers and passionate newcomers alike. We
+                        run tournaments, organize all-inclusive trips, and host the biggest fishing festival on the
+                        island.</p>
+                    <p class="reveal">This isn't just about catching fish. It's about building a community, growing the
+                        sport, and sharing the magic of Puerto Rico's deep blue waters with the world.</p>
+                    <a href="#" class="reveal" style="margin-top: 16px; display: inline-block;">Meet the Team &rarr;</a>
+                </div>
+                <div class="about-image reveal"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 7.5 PHOTO GALLERY ============ -->
+    <section class="gallery-strip">
+        <div class="gallery-track">
+            <img src="/images/festival-community.jpg" alt="IFT community gathering" loading="lazy">
+            <img src="/images/team-bus.jpg" alt="IFT team with sponsor bus" loading="lazy">
+            <img src="/images/festival-food.jpg" alt="Festival food vendors" loading="lazy">
+            <img src="/images/festival-artisan.jpg" alt="Local artisan at festival" loading="lazy">
+            <img src="/images/festival-crowd.jpg" alt="Festival crowd" loading="lazy">
+            <img src="/images/team-group.jpg" alt="IFT team group photo" loading="lazy">
+            <!-- Duplicate for seamless loop -->
+            <img src="/images/festival-community.jpg" alt="IFT community gathering" loading="lazy">
+            <img src="/images/team-bus.jpg" alt="IFT team with sponsor bus" loading="lazy">
+            <img src="/images/festival-food.jpg" alt="Festival food vendors" loading="lazy">
+            <img src="/images/festival-artisan.jpg" alt="Local artisan at festival" loading="lazy">
+            <img src="/images/festival-crowd.jpg" alt="Festival crowd" loading="lazy">
+            <img src="/images/team-group.jpg" alt="IFT team group photo" loading="lazy">
+        </div>
+    </section>
+
+    <!-- ============ 8. SPONSORS ============ -->
+    <section class="sponsors section-pad" id="sponsors">
+        <div class="container">
+            <h2 class="reveal">Become a Sponsor</h2>
+            <div class="sponsors-grid">
+                <div class="sponsor-card" data-stagger="0">
+                    <div class="sponsor-tier">Bronze</div>
+                    <div class="sponsor-price">Starting at TBD</div>
+                    <ul class="sponsor-benefits">
+                        <li>Logo on event signage</li>
+                        <li>Social media mention</li>
+                        <li>2 complimentary event passes</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-teal btn-pill">Inquire</a>
+                </div>
+                <div class="sponsor-card" data-stagger="1">
+                    <div class="sponsor-tier">Silver</div>
+                    <div class="sponsor-price">Starting at TBD</div>
+                    <ul class="sponsor-benefits">
+                        <li>Logo on all event materials</li>
+                        <li>Dedicated social media post</li>
+                        <li>4 complimentary event passes</li>
+                        <li>Booth space at festivals</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-teal btn-pill">Inquire</a>
+                </div>
+                <div class="sponsor-card gold-accent" data-stagger="2">
+                    <div class="sponsor-tier" style="color: var(--gold);">Gold</div>
+                    <div class="sponsor-price">Starting at TBD</div>
+                    <ul class="sponsor-benefits">
+                        <li>Premium logo placement</li>
+                        <li>Social media campaign</li>
+                        <li>8 complimentary event passes</li>
+                        <li>Premium booth at all events</li>
+                    </ul>
+                    <a href="#" class="btn btn-teal btn-pill">Inquire</a>
+                </div>
+                <div class="sponsor-card gold-accent" data-stagger="3">
+                    <div class="sponsor-tier" style="color: var(--gold);">Title</div>
+                    <div class="sponsor-price">Starting at TBD</div>
+                    <ul class="sponsor-benefits">
+                        <li>Event naming rights</li>
+                        <li>Full marketing integration</li>
+                        <li>Unlimited event access</li>
+                        <li>Exclusive brand partnership</li>
+                    </ul>
+                    <a href="#" class="btn btn-teal btn-pill">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ 9. EMAIL CAPTURE ============ -->
+    <section class="email-capture section-pad">
+        <div class="email-inner">
+            <h2 class="reveal">Join the Crew</h2>
+            <div class="bilingual reveal">&Uacute;nete al Equipo</div>
+            <p class="sub reveal">Get tournament schedules, trip announcements, and exclusive offers delivered to your
+                inbox.</p>
+            <form class="email-form reveal" onsubmit="return false;">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+            <p class="disclaimer reveal">No spam. Unsubscribe anytime. / Sin spam. Cancela cuando quieras.</p>
+        </div>
+    </section>
+
+    <!-- ============ 10. FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">IFT</div>
+                    <p class="footer-tagline">International Fishing Team<br>Puerto Rico's Premier Sport Fishing
+                        Experience</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <circle cx="12" cy="12" r="5" />
+                                <circle cx="17.5" cy="6.5" r="1.5" />
+                            </svg>
+                        </a>
+                        <a href="#" title="Facebook">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" title="TikTok">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 104 4V4a5 5 0 005 5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <a href="#">Tournaments</a>
+                    <a href="#">Trips</a>
+                    <a href="#">Festival</a>
+                    <a href="#">Sponsors</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="mailto:info@brsskiandtours.com">info@brsskiandtours.com</a>
+                    <a href="#">San Juan, Puerto Rico</a>
+                    <div style="margin-top: 16px;">
+                        <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 International Fishing Team &middot; Puerto Rico &middot; All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // ─── A. CANVAS FRAME-SCRUB HERO ───
+            var heroWrapper = document.getElementById('hero-pin-wrapper');
+            var heroSection = document.getElementById('hero-section');
+            var fallbackBg = document.getElementById('heroFallbackBg');
+            var canvas = document.getElementById('hero-canvas');
+            var ctx = canvas.getContext('2d');
+            var FRAME_COUNT = 120;
+            var frames = [];
+            var currentFrame = -1;
+
+            // Size canvas to viewport
+            function sizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                if (currentFrame >= 0) drawFrame(currentFrame);
+            }
+            sizeCanvas();
+            window.addEventListener('resize', sizeCanvas);
+
+            // Draw a frame with cover-fit
+            function drawFrame(idx) {
+                var img = frames[idx];
+                if (!img || !img.complete || !img.naturalWidth) return;
+                var ir = img.naturalWidth / img.naturalHeight;
+                var cr = canvas.width / canvas.height;
+                var dw, dh, dx, dy;
+                if (ir > cr) { dh = canvas.height; dw = dh * ir; dx = (canvas.width - dw) / 2; dy = 0; }
+                else { dw = canvas.width; dh = dw / ir; dx = 0; dy = (canvas.height - dh) / 2; }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, dx, dy, dw, dh);
+                currentFrame = idx;
+            }
+
+            // Preload frames
+            function preloadFrames() {
+                for (var i = 0; i < FRAME_COUNT; i++) {
+                    (function(idx) {
+                        var img = new Image();
+                        img.src = '/hero/frames/frame-' + String(idx + 1).padStart(3, '0') + '.jpg';
+                        img.onload = function() {
+                            if (idx === 0 && currentFrame < 0) {
+                                drawFrame(0);
+                                fallbackBg.classList.add('hidden');
+                            }
+                        };
+                        frames[idx] = img;
+                    })(i);
+                }
+            }
+            preloadFrames();
+
+            // Pin hero + scrub frames with GSAP ScrollTrigger
+            ScrollTrigger.create({
+                trigger: heroWrapper,
+                start: 'top top',
+                end: 'bottom top',
+                pin: heroSection,
+                scrub: true,
+                onUpdate: function (self) {
+                    var progress = self.progress;
+                    document.getElementById('heroProgressFill').style.height = (progress * 100) + '%';
+                    var targetFrame = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
+                    if (targetFrame !== currentFrame) {
+                        drawFrame(targetFrame);
+                    }
+                }
+            });
+
+            // Hero content fades and scales as user scrolls through the pin zone
+            gsap.to('.hero-content', {
+                scale: 1.1, opacity: 0, ease: 'none',
+                scrollTrigger: { trigger: heroWrapper, start: '30% top', end: '70% top', scrub: true }
+            });
+
+            // Marlin rises then fades
+            gsap.fromTo('#heroMarlin',
+                { opacity: 0, y: 80, x: 40 },
+                {
+                    opacity: 0.18, y: -30, x: 0, ease: 'power2.out',
+                    scrollTrigger: { trigger: heroWrapper, start: 'top top', end: '60% top', scrub: true }
+                }
+            );
+            gsap.to('#heroMarlin', {
+                opacity: 0, y: -100, ease: 'none',
+                scrollTrigger: { trigger: heroWrapper, start: '60% top', end: '90% top', scrub: true }
+            });
+
+            // Scroll indicator fades out early
+            gsap.to('.scroll-indicator, .scroll-arrow', {
+                opacity: 0, ease: 'none',
+                scrollTrigger: { trigger: heroWrapper, start: '8% top', end: '20% top', scrub: true }
+            });
+
+            // ─── B. ODOMETER COUNTERS ───
+            document.querySelectorAll('.odometer').forEach(function (odo) {
+                var val = odo.dataset.value;
+                var prefix = odo.dataset.prefix || '';
+                var suffix = odo.dataset.suffix || '';
+                var digits = val.split('');
+                var colorClass = '';
+                if (odo.classList.contains('gold')) colorClass = 'gold';
+                else if (odo.classList.contains('teal')) colorClass = 'teal';
+                else if (odo.classList.contains('navy')) colorClass = 'navy';
+
+                // Build odometer digits
+                odo.innerHTML = '';
+                odo.style.display = 'inline-flex';
+                odo.style.justifyContent = 'center';
+                odo.style.overflow = 'hidden';
+                odo.style.height = '1.15em';
+
+                if (prefix) {
+                    var ps = document.createElement('span');
+                    ps.className = 'stat-suffix';
+                    ps.style.fontSize = 'inherit';
+                    ps.style.color = 'inherit';
+                    ps.textContent = prefix;
+                    odo.appendChild(ps);
+                }
+
+                digits.forEach(function (d) {
+                    var digit = document.createElement('div');
+                    digit.className = 'odo-digit';
+                    var strip = document.createElement('div');
+                    strip.className = 'odo-strip';
+                    for (var i = 0; i <= 9; i++) {
+                        var s = document.createElement('span');
+                        s.textContent = i;
+                        strip.appendChild(s);
+                    }
+                    digit.appendChild(strip);
+                    odo.appendChild(digit);
+                });
+
+                if (suffix) {
+                    var ss = document.createElement('span');
+                    ss.className = 'stat-suffix';
+                    ss.style.fontSize = 'inherit';
+                    ss.style.color = 'inherit';
+                    ss.textContent = suffix;
+                    odo.appendChild(ss);
+                }
+
+                // Trigger on scroll
+                ScrollTrigger.create({
+                    trigger: odo,
+                    start: 'top 85%',
+                    once: true,
+                    onEnter: function () {
+                        var strips = odo.querySelectorAll('.odo-strip');
+                        strips.forEach(function (strip, i) {
+                            var target = parseInt(digits[i]);
+                            var h = strip.children[0].offsetHeight;
+                            strip.style.transform = 'translateY(-' + (target * h) + 'px)';
+                            strip.style.transitionDelay = (i * 0.12) + 's';
+                        });
+                    }
+                });
+            });
+
+            // ─── C. KINETIC MARQUEE ───
+            // Clone content for seamless loop
+            document.querySelectorAll('.marquee-row').forEach(function (row) {
+                var content = row.querySelector('.marquee-content');
+                var clone1 = content.cloneNode(true);
+                var clone2 = content.cloneNode(true);
+                row.appendChild(clone1);
+                row.appendChild(clone2);
+            });
+
+            // Scroll-reactive speed
+            var marqueeScrollVelocity = 0;
+            ScrollTrigger.create({
+                onUpdate: function (self) {
+                    marqueeScrollVelocity = Math.abs(self.getVelocity());
+                }
+            });
+
+            var marqueeBaseSpeed = 50;
+            document.querySelectorAll('.marquee-row').forEach(function (row) {
+                var content = row.querySelector('.marquee-content');
+                var direction = row.dataset.direction === 'right' ? 1 : -1;
+                var speedMult = parseFloat(row.dataset.speed) || 1;
+                var contentWidth = content.offsetWidth;
+                var x = 0;
+
+                function animate() {
+                    var speed = (marqueeBaseSpeed + marqueeScrollVelocity * 0.08) * speedMult;
+                    x += direction * -1 * speed / 60;
+                    if (direction === -1 && x <= -contentWidth) x += contentWidth;
+                    if (direction === 1 && x >= 0) x -= contentWidth;
+                    row.style.transform = 'translateX(' + x + 'px)';
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            });
+
+            // ─── D. STICKY CARDS (Pillars) — Scale/fade previous card ───
+            var pillars = document.querySelectorAll('.pillar');
+            var pillarDots = document.querySelectorAll('.pillar-dot');
+            var pillarProgress = document.getElementById('pillarProgress');
+
+            pillars.forEach(function (card, i) {
+                // Scale down previous card as next covers it
+                if (i < pillars.length - 1) {
+                    gsap.to(card, {
+                        scale: 0.92,
+                        opacity: 0.5,
+                        scrollTrigger: {
+                            trigger: pillars[i + 1],
+                            start: 'top 90%',
+                            end: 'top 20%',
+                            scrub: true
+                        }
+                    });
+                }
+
+                // Update progress dots
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: 'top 50%',
+                    end: 'bottom 50%',
+                    onEnter: function () { updatePillarDots(i); },
+                    onEnterBack: function () { updatePillarDots(i); }
+                });
+            });
+
+            // Show/hide pillar progress indicator
+            ScrollTrigger.create({
+                trigger: '.pillars-section',
+                start: 'top 30%',
+                end: 'bottom 70%',
+                onEnter: function () { pillarProgress.classList.add('visible'); },
+                onLeave: function () { pillarProgress.classList.remove('visible'); },
+                onEnterBack: function () { pillarProgress.classList.add('visible'); },
+                onLeaveBack: function () { pillarProgress.classList.remove('visible'); }
+            });
+
+            function updatePillarDots(activeIndex) {
+                pillarDots.forEach(function (dot, i) {
+                    dot.classList.toggle('active', i === activeIndex);
+                });
+            }
+
+            // ─── E. GENERAL SCROLL REVEALS (IntersectionObserver) ───
+            var revealElements = document.querySelectorAll('.reveal');
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            revealElements.forEach(function (el) { revealObserver.observe(el); });
+
+            // Stagger event cards
+            var eventCards = document.querySelectorAll('.event-card');
+            var eventObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        var stagger = parseInt(entry.target.dataset.stagger) || 0;
+                        setTimeout(function () {
+                            entry.target.classList.add('visible');
+                        }, stagger * 150);
+                        eventObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            eventCards.forEach(function (card) { eventObserver.observe(card); });
+
+            // Stagger sponsor cards
+            var sponsorCards = document.querySelectorAll('.sponsor-card');
+            var sponsorObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        var stagger = parseInt(entry.target.dataset.stagger) || 0;
+                        setTimeout(function () {
+                            entry.target.classList.add('visible');
+                        }, stagger * 150);
+                        sponsorObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            sponsorCards.forEach(function (card) { sponsorObserver.observe(card); });
+
+            // ─── F. NAV SHADOW ON SCROLL ───
+            var nav = document.getElementById('mainNav');
+            ScrollTrigger.create({
+                start: 100,
+                onUpdate: function (self) {
+                    if (self.scroll() > 100) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                }
+            });
+
+        })();
+    </script>
+</body>
+
+</html>
