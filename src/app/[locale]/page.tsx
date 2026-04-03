@@ -1,3 +1,4 @@
+import { CinematicHero } from '@/components/hero/CinematicHero';
 import { TaglineReveal } from '@/components/home/TaglineReveal';
 import { StatsSection } from '@/components/home/StatsSection';
 import { ThreePillars } from '@/components/home/ThreePillars';
@@ -8,7 +9,7 @@ import { EmailCapture } from '@/components/home/EmailCapture';
 export default function HomePage() {
   return (
     <>
-      {/* CinematicHero will go here once the hero pipeline is built */}
+      <CinematicHero />
       <TaglineReveal />
       <StatsSection />
       <ThreePillars />
