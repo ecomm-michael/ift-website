@@ -8,262 +8,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="../shared.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-        :root {
-            --navy: #0B2D45;
-            --teal: #0099B5;
-            --turquoise: #00C4CC;
-            --gold: #F5A623;
-            --coral: #E84E3A;
-            --seafoam: #EDF7F9;
-            --sandy: #F9F4E8;
-            --white: #FFFFFF;
-        }
-
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: auto;
-        }
-
-        body {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 400;
-            color: var(--navy);
-            background: var(--white);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-        }
-
-        /* ---------- UTILITIES ---------- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
-        .section-pad {
-            padding: 100px 0;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .eyebrow {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 600;
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .btn {
-            display: inline-block;
-            font-family: 'Barlow', sans-serif;
-            font-weight: 600;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 14px 32px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
-        .btn-teal {
-            background: var(--teal);
-            color: var(--white);
-            border-color: var(--teal);
-        }
-
-        .btn-teal:hover {
-            background: #007a91;
-            border-color: #007a91;
-        }
-
-        .btn-outline-white {
-            background: transparent;
-            color: var(--white);
-            border-color: rgba(255, 255, 255, 0.6);
-        }
-
-        .btn-outline-white:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--white);
-        }
-
-        .btn-outline-teal {
-            background: transparent;
-            color: var(--teal);
-            border-color: var(--teal);
-        }
-
-        .btn-outline-teal:hover {
-            background: var(--teal);
-            color: var(--white);
-        }
-
-        .btn-navy {
-            background: var(--navy);
-            color: var(--white);
-            border-color: var(--navy);
-        }
-
-        .btn-navy:hover {
-            background: #0a2438;
-            border-color: #0a2438;
-        }
-
-        .btn-pill {
-            border-radius: 999px;
-        }
-
-        /* ---------- SCROLL REVEAL ---------- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ---------- FIXED NAV ---------- */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 64px;
-            background: var(--white);
-            border-bottom: 1px solid rgba(11, 45, 69, 0.08);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            padding: 0 40px;
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-
-        .nav.scrolled {
-            box-shadow: 0 2px 24px rgba(11, 45, 69, 0.1);
-            border-bottom-color: rgba(11, 45, 69, 0.12);
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-
-        .nav-logo {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 24px;
-            color: var(--navy);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-logo-sub {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 600;
-            font-size: 10px;
-            letter-spacing: 2.5px;
-            color: var(--navy);
-            opacity: 0.5;
-            text-transform: uppercase;
-        }
-
-        .nav-center {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            gap: 36px;
-        }
-
-        .nav-center a {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--navy);
-            text-decoration: none;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
-
-        .nav-center a:hover {
-            color: var(--teal);
-        }
-
-        .nav-center a.active {
-            color: var(--teal);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-shrink: 0;
-        }
-
-        .lang-switch {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 500;
-            font-size: 12px;
-            color: var(--navy);
-            opacity: 0.45;
-            letter-spacing: 1px;
-        }
-
-        .lang-switch span {
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .lang-switch span:hover {
-            opacity: 1;
-        }
-
-        .lang-switch .active {
-            opacity: 1;
-            color: var(--teal);
-        }
-
-        .nav-cta {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 600;
-            font-size: 12px;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            background: var(--teal);
-            color: var(--white);
-            padding: 9px 22px;
-            border-radius: 999px;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-
-        .nav-cta:hover {
-            background: #007a91;
-        }
-
         /* ---------- HERO ---------- */
         .page-hero {
             position: relative;
@@ -501,95 +249,6 @@
             color: var(--turquoise);
         }
 
-        /* ---------- FOOTER ---------- */
-        .footer {
-            background: var(--white);
-            border-top: 1px solid rgba(11, 45, 69, 0.08);
-            padding: 72px 0 0;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 48px;
-            padding-bottom: 48px;
-        }
-
-        .footer-brand .footer-logo {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 22px;
-            color: var(--navy);
-            margin-bottom: 8px;
-        }
-
-        .footer-brand .footer-tagline {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 400;
-            font-size: 14px;
-            color: rgba(11, 45, 69, 0.5);
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 16px;
-        }
-
-        .footer-social a {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--seafoam);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-            text-decoration: none;
-            color: var(--navy);
-            font-size: 14px;
-        }
-
-        .footer-social a:hover {
-            background: var(--teal);
-            color: var(--white);
-        }
-
-        .footer-col h4 {
-            font-family: 'Barlow', sans-serif;
-            font-weight: 600;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--navy);
-            margin-bottom: 20px;
-        }
-
-        .footer-col a {
-            display: block;
-            font-family: 'Barlow', sans-serif;
-            font-weight: 400;
-            font-size: 14px;
-            color: rgba(11, 45, 69, 0.55);
-            text-decoration: none;
-            margin-bottom: 12px;
-            transition: color 0.2s;
-        }
-
-        .footer-col a:hover {
-            color: var(--teal);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(11, 45, 69, 0.08);
-            padding: 20px 0;
-            text-align: center;
-            font-family: 'Barlow', sans-serif;
-            font-weight: 400;
-            font-size: 13px;
-            color: rgba(11, 45, 69, 0.4);
-        }
 
         /* ---------- RESPONSIVE ---------- */
         @media (max-width: 900px) {
@@ -612,23 +271,12 @@
                 gap: 32px;
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .nav-center {
-                display: none;
-            }
-
             .contact-section h2 {
                 font-size: 32px;
             }
         }
 
         @media (max-width: 600px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
 
             .page-hero-content h1 {
                 font-size: 36px;
@@ -639,24 +287,8 @@
 
 <body>
 
-    <!-- ============ FIXED NAV ============ -->
-    <nav class="nav" id="mainNav">
-        <div class="nav-left">
-            <a href="../" class="nav-logo">IFT</a>
-            <span class="nav-logo-sub">International Fishing Team</span>
-        </div>
-        <div class="nav-center">
-            <a href="../tournaments/">Tournaments</a>
-            <a href="../trips/">Trips</a>
-            <a href="../festival/">Festival</a>
-            <a href="../sponsors/">Sponsors</a>
-            <a href="./" class="active">About</a>
-        </div>
-        <div class="nav-right">
-            <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
-            <a href="../tournaments/" class="nav-cta">Register Now</a>
-        </div>
-    </nav>
+    <!-- Nav injected by _includes.js -->
+    <div id="nav-root"></div>
 
     <!-- ============ HERO ============ -->
     <section class="page-hero">
@@ -749,69 +381,8 @@
             </div>
         </div>
     </section>
-
-    <!-- ============ FOOTER ============ -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo">IFT</div>
-                    <p class="footer-tagline">International Fishing Team<br>Puerto Rico's Premier Sport Fishing
-                        Experience</p>
-                    <!-- HIDDEN: re-enable when social media accounts are live -->
-                    <div class="footer-social" style="display:none">
-                        <a href="#" title="Instagram">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" />
-                                <circle cx="12" cy="12" r="5" />
-                                <circle cx="17.5" cy="6.5" r="1.5" />
-                            </svg>
-                        </a>
-                        <a href="#" title="Facebook">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                            </svg>
-                        </a>
-                        <a href="#" title="TikTok">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 12a4 4 0 104 4V4a5 5 0 005 5" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Navigate</h4>
-                    <a href="../tournaments/">Tournaments</a>
-                    <a href="../trips/">Trips</a>
-                    <a href="../festival/">Festival</a>
-                    <a href="../sponsors/">Sponsors</a>
-                    <a href="./">About</a>
-                </div>
-                <!-- HIDDEN: re-enable when legal pages are ready -->
-                <div class="footer-col" style="display:none">
-                    <h4>Legal</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Cookie Policy</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <a href="mailto:info@brsskiandtours.com">info@brsskiandtours.com</a>
-                    <!-- HIDDEN: re-enable when location link is ready -->
-                    <a href="#" style="display:none">San Juan, Puerto Rico</a>
-                    <div style="margin-top: 16px;">
-                        <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2026 International Fishing Team &middot; Puerto Rico &middot; All rights reserved.
-            </div>
-        </div>
-    </footer>
+    <!-- Footer injected by _includes.js -->
+    <div id="footer-root"></div>
 
     <style>
         /* ── ABOUT ANIMATION ENHANCEMENTS ── */
@@ -918,14 +489,6 @@
             gsap.registerPlugin(ScrollTrigger);
 
             var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            // ─── NAV SCROLL SHADOW ───
-            ScrollTrigger.create({
-                start: 'top -80',
-                onUpdate: function (self) {
-                    document.getElementById('mainNav').classList.toggle('scrolled', self.progress > 0);
-                }
-            });
 
             // ─── HERO CONTENT ENTRANCE ───
             if (!prefersReduced) {
@@ -1050,7 +613,7 @@
 
         })();
     </script>
-
+    <script src="../_includes.js"></script>
 </body>
 
 </html>
