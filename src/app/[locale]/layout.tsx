@@ -5,6 +5,8 @@ import { routing } from '@/i18n/routing';
 import { geistSans, geistMono, barlowCondensed, barlow } from '@/lib/fonts';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Footer from '@/components/footer/Footer';
+import { Navbar } from '@/components/nav/Navbar';
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -34,9 +36,11 @@ export default async function LocaleLayout({
           Skip to content
         </a>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Navbar />
           <main id="main-content">
             {children}
           </main>
+          <Footer />
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
