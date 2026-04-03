@@ -1319,6 +1319,153 @@
             color: rgba(11, 45, 69, 0.4);
         }
 
+        /* ---------- MOBILE HAMBURGER & DRAWER ---------- */
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: auto;
+            z-index: 1002;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+        }
+        .hamburger-line {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .nav-hamburger.active .hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav-hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-hamburger.active .hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            max-width: 85vw;
+            height: 100vh;
+            height: 100dvh;
+            background: var(--white);
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            box-shadow: -4px 0 24px rgba(11, 45, 69, 0);
+        }
+        .mobile-drawer.open {
+            transform: translateX(0);
+            box-shadow: -4px 0 24px rgba(11, 45, 69, 0.15);
+        }
+        .mobile-drawer-inner {
+            padding: 80px 28px 40px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+        .mobile-drawer-brand {
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(11, 45, 69, 0.08);
+        }
+        .mobile-drawer-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: var(--navy);
+            display: block;
+            letter-spacing: -0.5px;
+        }
+        .mobile-drawer-sub {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            color: var(--navy);
+            opacity: 0.45;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 4px;
+        }
+        .mobile-drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 32px;
+        }
+        .mobile-drawer-links a {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--navy);
+            text-decoration: none;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(11, 45, 69, 0.06);
+            transition: color 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .mobile-drawer-links a:hover {
+            color: var(--teal);
+        }
+        .mobile-drawer-cta {
+            display: block;
+            text-align: center;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: var(--teal);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: background 0.2s;
+            margin-bottom: 28px;
+        }
+        .mobile-drawer-cta:hover {
+            background: #007a91;
+        }
+        .mobile-drawer-lang {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(11, 45, 69, 0.08);
+        }
+        .mobile-drawer-lang .lang-switch {
+            display: inline;
+            font-size: 13px;
+            opacity: 0.5;
+        }
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(11, 45, 69, 0.4);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .mobile-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         /* ---------- RESPONSIVE ---------- */
         @media (max-width: 900px) {
             .hero-headline {
@@ -1338,8 +1485,29 @@
                 grid-template-columns: 1fr 1fr;
             }
 
+            .nav {
+                height: 56px;
+                padding: 0 20px;
+            }
+
+            .nav-logo {
+                font-size: 22px;
+            }
+
+            .nav-logo-sub {
+                display: none;
+            }
+
             .nav-center {
                 display: none;
+            }
+
+            .nav-right {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
             }
 
             .pillar h3 {
@@ -1362,30 +1530,13 @@
                 display: none;
             }
 
-            .nav {
-                height: 48px;
-                padding: 0 16px;
-            }
-
-            .nav-logo {
-                font-size: 20px;
-            }
-
-            .nav-logo-sub {
-                display: none;
-            }
-
-            .nav-cta {
-                font-size: 11px;
-                padding: 6px 14px;
-            }
-
-            .lang-switch {
-                display: none;
-            }
-
             #hero-pin-wrapper {
-                height: 250vh;
+                height: 200vh;
+            }
+
+            #hero-section {
+                height: 80vh;
+                min-height: 480px;
             }
 
             .hero-sub {
@@ -1428,7 +1579,32 @@
             <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
             <a href="tournaments/" class="nav-cta">Register Now</a>
         </div>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
     </nav>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="mobile-drawer-inner">
+            <div class="mobile-drawer-brand">
+                <span class="mobile-drawer-logo">IFT</span>
+                <span class="mobile-drawer-sub">International Fishing Team</span>
+            </div>
+            <div class="mobile-drawer-links">
+                <a href="tournaments/">Tournaments</a>
+                <a href="trips/">Trips</a>
+                <a href="festival/">Festival</a>
+                <a href="sponsors/">Sponsors</a>
+                <a href="about/">About</a>
+            </div>
+            <a href="tournaments/" class="mobile-drawer-cta">Register Now</a>
+            <div class="mobile-drawer-lang">
+                <span class="lang-switch"><span class="active">EN</span> | <span>ES</span></span>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
 
     <!-- ============ 2. CINEMATIC HERO (VIDEO SCROLL-SCRUB) ============ -->
     <div id="hero-pin-wrapper">
@@ -1825,7 +2001,9 @@
             var fallbackBg = document.getElementById('heroFallbackBg');
             var canvas = document.getElementById('hero-canvas');
             var ctx = canvas.getContext('2d');
-            var FRAME_COUNT = 120;
+            var isMobileHero = window.innerWidth <= 900;
+            var FRAME_COUNT = isMobileHero ? 40 : 120;
+            var FRAME_STEP = isMobileHero ? 3 : 1;
             var frames = [];
             var currentFrame = -1;
 
@@ -1845,7 +2023,7 @@
                 var ir = img.naturalWidth / img.naturalHeight;
                 var cr = canvas.width / canvas.height;
                 var dw, dh, dx, dy;
-                if (ir > cr) { dh = canvas.height; dw = dh * ir; dx = (canvas.width - dw) / 2; dy = 0; }
+                if (ir > cr) { dh = canvas.height; dw = dh * ir; var focalX = (window.innerWidth <= 900) ? 0.55 : 0.5; dx = (canvas.width - dw) * focalX; dy = 0; }
                 else { dw = canvas.width; dh = dw / ir; dx = 0; dy = (canvas.height - dh) / 2; }
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(img, dx, dy, dw, dh);
@@ -1857,7 +2035,7 @@
                 for (var i = 0; i < FRAME_COUNT; i++) {
                     (function(idx) {
                         var img = new Image();
-                        img.src = 'hero/frames/frame-' + String(idx + 1).padStart(3, '0') + '.jpg';
+                        img.src = 'hero/frames/frame-' + String((idx * FRAME_STEP) + 1).padStart(3, '0') + '.jpg';
                         img.onload = function() {
                             if (idx === 0 && currentFrame < 0) {
                                 drawFrame(0);
@@ -2117,6 +2295,50 @@
                     }
                 }
             });
+
+            // Mobile drawer toggle
+            (function() {
+                var hamburger = document.getElementById('navHamburger');
+                var drawer = document.getElementById('mobileDrawer');
+                var overlay = document.getElementById('mobileOverlay');
+                if (!hamburger || !drawer || !overlay) return;
+
+                function openDrawer() {
+                    hamburger.classList.add('active');
+                    drawer.classList.add('open');
+                    overlay.classList.add('open');
+                    hamburger.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeDrawer() {
+                    hamburger.classList.remove('active');
+                    drawer.classList.remove('open');
+                    overlay.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+
+                hamburger.addEventListener('click', function() {
+                    if (drawer.classList.contains('open')) {
+                        closeDrawer();
+                    } else {
+                        openDrawer();
+                    }
+                });
+
+                overlay.addEventListener('click', closeDrawer);
+
+                drawer.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', closeDrawer);
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+                        closeDrawer();
+                    }
+                });
+            })();
 
         })();
     </script>
