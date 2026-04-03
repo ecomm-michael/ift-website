@@ -29,7 +29,7 @@ function OdometerNumber({ value, suffix = '', triggered }: OdometerNumberProps) 
 
   return (
     <span
-      className="inline-flex items-baseline font-mono font-bold text-4xl md:text-6xl text-caribbean-teal"
+      className="inline-flex items-baseline font-mono font-bold text-3xl sm:text-4xl md:text-6xl text-caribbean-teal"
       aria-label={value + suffix}
     >
       {chars.map((char, charIdx) => {

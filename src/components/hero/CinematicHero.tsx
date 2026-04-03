@@ -177,7 +177,7 @@ export function CinematicHero({
           top: 0,
           left: 0,
           width: '100vw',
-          height: '100vh',
+          height: isMobile ? '65vh' : '100vh',
           zIndex: 10,
         }}
         aria-hidden="true"
@@ -277,7 +277,7 @@ export function CinematicHero({
 
       {/* ── Spacer div — maintains document flow so content below hero is reachable ── */}
       <div
-        style={{ height: `${scrollHeight}vh` }}
+        style={{ height: isMobile ? '100vh' : `${scrollHeight}vh` }}
         aria-hidden="true"
       />
 

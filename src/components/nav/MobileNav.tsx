@@ -60,7 +60,7 @@ export function MobileNav({
       aria-label="Navigation menu"
     >
       {/* Header with close button */}
-      <div className="flex items-center justify-between px-6 h-16 border-b border-border">
+      <div className="flex items-center justify-between px-6 h-12 border-b border-border">
         <span className="font-display font-extrabold text-xl text-abyssal-navy tracking-tight">
           IFT
         </span>

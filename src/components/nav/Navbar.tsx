@@ -35,7 +35,7 @@ export function Navbar() {
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-12 md:h-16">
           {/* Left — Wordmark */}
           <Link
             href="/"
@@ -99,7 +99,7 @@ export function Navbar() {
       </nav>
 
       {/* Spacer so content is not hidden behind the fixed nav */}
-      <div className="h-16" aria-hidden="true" />
+      <div className="h-12 md:h-16" aria-hidden="true" />
 
       {/* Mobile overlay */}
       <MobileNav

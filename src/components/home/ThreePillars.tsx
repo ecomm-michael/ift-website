@@ -42,7 +42,7 @@ export function ThreePillars() {
 
   return (
     <section className="py-20">
-      <div className="max-w-3xl mx-auto px-6 pb-40">
+      <div className="max-w-3xl mx-auto px-6 pb-20 md:pb-40">
         {PILLARS.map((pillar) => (
           <div
             key={pillar.key}
@@ -51,7 +51,7 @@ export function ThreePillars() {
               pillar.top,
               pillar.zIndex,
               pillar.bg,
-              'rounded-3xl min-h-[320px] md:min-h-[400px] p-10 md:p-12 shadow-xl',
+              'rounded-3xl min-h-[320px] md:min-h-[400px] p-6 md:p-12 shadow-xl',
               'flex flex-col justify-end',
             ].join(' ')}
           >
