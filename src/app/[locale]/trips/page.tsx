@@ -114,10 +114,10 @@ export default function TripsPage() {
           Contact us to plan your perfect fishing trip.
         </p>
         <a
-          href="mailto:info@internationalfishingteam.com"
+          href="mailto:info@brsskiandtours.com"
           className="inline-block bg-caribbean-teal text-white px-8 py-3 rounded-lg font-semibold hover:bg-turquoise-catch transition-colors"
         >
-          info@internationalfishingteam.com
+          info@brsskiandtours.com
         </a>
       </section>
     </div>

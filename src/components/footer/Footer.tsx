@@ -118,11 +118,11 @@ export default function Footer() {
             <ul className="mt-4 space-y-3">
               <li>
                 <a
-                  href="mailto:info@internationalfishingteam.com"
+                  href="mailto:info@brsskiandtours.com"
                   className="flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-caribbean-teal"
                 >
                   <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  info@internationalfishingteam.com
+                  info@brsskiandtours.com
                 </a>
               </li>
               <li>

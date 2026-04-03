@@ -201,13 +201,13 @@ export default function SponsorsPage() {
           Contact us to discuss sponsorship opportunities
         </p>
         <a
-          href="mailto:sponsors@internationalfishingteam.com"
+          href="mailto:info@brsskiandtours.com"
           className="inline-block bg-caribbean-teal text-white px-8 py-3 rounded-lg font-semibold hover:bg-turquoise-catch transition-colors"
         >
           {t('inquire')}
         </a>
         <p className="mt-6 text-white/50 text-sm">
-          sponsors@internationalfishingteam.com
+          info@brsskiandtours.com
         </p>
       </section>
     </div>

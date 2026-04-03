@@ -101,10 +101,10 @@ export default function AboutPage() {
               ✉
             </div>
             <a
-              href="mailto:info@internationalfishingteam.com"
+              href="mailto:info@brsskiandtours.com"
               className="text-white/80 hover:text-turquoise-catch transition-colors text-sm"
             >
-              info@internationalfishingteam.com
+              info@brsskiandtours.com
             </a>
           </div>
 
