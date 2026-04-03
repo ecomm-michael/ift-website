@@ -805,19 +805,19 @@
         }
 
         .pillar-tournaments {
-            background: linear-gradient(rgba(11,45,69,0.65), rgba(11,45,69,0.75)), url('/images/pillar-tournaments.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(11,45,69,0.65), rgba(11,45,69,0.75)), url('images/pillar-tournaments.jpg') center/cover no-repeat;
             color: var(--white);
             z-index: 1;
         }
 
         .pillar-trips {
-            background: linear-gradient(rgba(0,153,181,0.55), rgba(11,45,69,0.7)), url('/images/generated/pillar-trips.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0,153,181,0.55), rgba(11,45,69,0.7)), url('images/generated/pillar-trips.jpg') center/cover no-repeat;
             color: var(--white);
             z-index: 2;
         }
 
         .pillar-festival {
-            background: linear-gradient(rgba(249,244,232,0.5), rgba(245,166,35,0.55)), url('/images/pillar-festival.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(249,244,232,0.5), rgba(245,166,35,0.55)), url('images/pillar-festival.jpg') center/cover no-repeat;
             color: var(--navy);
             z-index: 3;
         }
@@ -985,7 +985,7 @@
             width: 100%;
             height: 480px;
             border-radius: 12px;
-            background: url('/images/about-founders.jpg') center/cover no-repeat;
+            background: url('images/about-founders.jpg') center/cover no-repeat;
             position: relative;
             overflow: hidden;
         }
@@ -1571,7 +1571,7 @@
             </div>
             <div class="events-grid">
                 <div class="event-card" data-stagger="0">
-                    <div class="event-card-image" style="background: url('/images/generated/event-classic.jpg') center/cover no-repeat;"></div>
+                    <div class="event-card-image" style="background: url('images/generated/event-classic.jpg') center/cover no-repeat;"></div>
                     <div class="event-date">June 14, 2026</div>
                     <div class="event-title">Marlin Open 2026</div>
                     <div class="event-location">Fajardo, Puerto Rico</div>
@@ -1579,7 +1579,7 @@
                     <a href="#" class="btn btn-teal btn-pill">Register</a>
                 </div>
                 <div class="event-card" data-stagger="1">
-                    <div class="event-card-image" style="background: url('/images/generated/event-festival.jpg') center/cover no-repeat;"></div>
+                    <div class="event-card-image" style="background: url('images/generated/event-festival.jpg') center/cover no-repeat;"></div>
                     <div class="event-date">August 2026</div>
                     <div class="event-title">IFT Annual Festival</div>
                     <div class="event-location">San Juan, Puerto Rico</div>
@@ -1587,7 +1587,7 @@
                     <a href="#" class="btn btn-outline-teal btn-pill">Learn More</a>
                 </div>
                 <div class="event-card" data-stagger="2">
-                    <div class="event-card-image" style="background: url('/images/generated/event-tournament.jpg') center/cover no-repeat;"></div>
+                    <div class="event-card-image" style="background: url('images/generated/event-tournament.jpg') center/cover no-repeat;"></div>
                     <div class="event-date">October 2026</div>
                     <div class="event-title">Blue Marlin Classic</div>
                     <div class="event-location">Humacao, Puerto Rico</div>
@@ -1624,19 +1624,19 @@
     <!-- ============ 7.5 PHOTO GALLERY ============ -->
     <section class="gallery-strip">
         <div class="gallery-track">
-            <img src="/images/festival-community.jpg" alt="IFT community gathering" loading="lazy">
-            <img src="/images/team-bus.jpg" alt="IFT team with sponsor bus" loading="lazy">
-            <img src="/images/festival-food.jpg" alt="Festival food vendors" loading="lazy">
-            <img src="/images/festival-artisan.jpg" alt="Local artisan at festival" loading="lazy">
-            <img src="/images/festival-crowd.jpg" alt="Festival crowd" loading="lazy">
-            <img src="/images/team-group.jpg" alt="IFT team group photo" loading="lazy">
+            <img src="images/festival-community.jpg" alt="IFT community gathering" loading="lazy">
+            <img src="images/team-bus.jpg" alt="IFT team with sponsor bus" loading="lazy">
+            <img src="images/festival-food.jpg" alt="Festival food vendors" loading="lazy">
+            <img src="images/festival-artisan.jpg" alt="Local artisan at festival" loading="lazy">
+            <img src="images/festival-crowd.jpg" alt="Festival crowd" loading="lazy">
+            <img src="images/team-group.jpg" alt="IFT team group photo" loading="lazy">
             <!-- Duplicate for seamless loop -->
-            <img src="/images/festival-community.jpg" alt="IFT community gathering" loading="lazy">
-            <img src="/images/team-bus.jpg" alt="IFT team with sponsor bus" loading="lazy">
-            <img src="/images/festival-food.jpg" alt="Festival food vendors" loading="lazy">
-            <img src="/images/festival-artisan.jpg" alt="Local artisan at festival" loading="lazy">
-            <img src="/images/festival-crowd.jpg" alt="Festival crowd" loading="lazy">
-            <img src="/images/team-group.jpg" alt="IFT team group photo" loading="lazy">
+            <img src="images/festival-community.jpg" alt="IFT community gathering" loading="lazy">
+            <img src="images/team-bus.jpg" alt="IFT team with sponsor bus" loading="lazy">
+            <img src="images/festival-food.jpg" alt="Festival food vendors" loading="lazy">
+            <img src="images/festival-artisan.jpg" alt="Local artisan at festival" loading="lazy">
+            <img src="images/festival-crowd.jpg" alt="Festival crowd" loading="lazy">
+            <img src="images/team-group.jpg" alt="IFT team group photo" loading="lazy">
         </div>
     </section>
 
@@ -1810,7 +1810,7 @@
                 for (var i = 0; i < FRAME_COUNT; i++) {
                     (function(idx) {
                         var img = new Image();
-                        img.src = '/hero/frames/frame-' + String(idx + 1).padStart(3, '0') + '.jpg';
+                        img.src = 'hero/frames/frame-' + String(idx + 1).padStart(3, '0') + '.jpg';
                         img.onload = function() {
                             if (idx === 0 && currentFrame < 0) {
                                 drawFrame(0);
