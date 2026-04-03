@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "tournaments": "Torneos",
+    "trips": "Viajes",
+    "festival": "Festival",
+    "sponsors": "Patrocinadores",
+    "about": "Nosotros",
+    "register": "Regístrate Ahora",
+    "language": "EN"
+  },
+  "hero": {
+    "tagline": "La Experiencia de Pesca Premier de Puerto Rico"
+  },
+  "stats": {
+    "prizePool": "Bolsa de Premios",
+    "anglers": "Pescadores",
+    "events": "Eventos Anuales"
+  },
+  "pillars": {
+    "tournaments": {
+      "title": "Torneos",
+      "description": "Compite en torneos de pesca de clase mundial con importantes bolsas de premios en las mejores aguas de Puerto Rico.",
+      "cta": "Ver Torneos"
+    },
+    "trips": {
+      "title": "Viajes Todo Incluido",
+      "description": "Vive la aventura de pesca definitiva con nuestros paquetes todo incluido.",
+      "cta": "Explorar Viajes"
+    },
+    "festival": {
+      "title": "Festival",
+      "description": "Únete a la celebración — pesca, comida, música y comunidad en las costas de Puerto Rico.",
+      "cta": "Saber Más"
+    }
+  },
+  "email": {
+    "heading": "Únete al Equipo",
+    "placeholder": "Ingresa tu correo electrónico",
+    "submit": "Suscribirse",
+    "success": "¡Gracias por suscribirte!"
+  },
+  "footer": {
+    "tagline": "La Experiencia de Pesca Premier de Puerto Rico",
+    "quickLinks": "Enlaces Rápidos",
+    "contact": "Contacto",
+    "followUs": "Síguenos",
+    "copyright": "© 2026 International Fishing Team. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad"
+  },
+  "about": {
+    "title": "Nosotros",
+    "team": "Nuestro Equipo",
+    "story": "Nuestra Historia",
+    "contact": "Contáctanos"
+  },
+  "tournaments": {
+    "title": "Torneos",
+    "schedule": "Calendario de Torneos",
+    "pastResults": "Resultados Anteriores",
+    "registerCta": "Regístrate para el Próximo Torneo"
+  },
+  "trips": {
+    "title": "Viajes de Pesca Todo Incluido",
+    "inquire": "Consultar Ahora",
+    "packages": "Paquetes de Viaje"
+  },
+  "festival": {
+    "title": "Festival IFT 2026",
+    "schedule": "Programa del Evento",
+    "getCta": "Obtén tu Pase del Festival"
+  },
+  "sponsors": {
+    "title": "Asóciate con Nosotros",
+    "tiers": "Niveles de Patrocinio",
+    "benefits": "Comparación de Beneficios",
+    "inquire": "Conviértete en Patrocinador"
+  },
+  "forms": {
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "phone": "Teléfono",
+    "message": "Mensaje",
+    "submit": "Enviar",
+    "company": "Nombre de la Empresa",
+    "contactName": "Nombre de Contacto",
+    "tier": "Nivel de Interés",
+    "dates": "Fechas Preferidas",
+    "groupSize": "Tamaño del Grupo",
+    "subject": "Asunto",
+    "success": "¡Gracias! Nos pondremos en contacto pronto."
+  }
+}

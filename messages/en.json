@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "tournaments": "Tournaments",
+    "trips": "Trips",
+    "festival": "Festival",
+    "sponsors": "Sponsors",
+    "about": "About",
+    "register": "Register Now",
+    "language": "ES"
+  },
+  "hero": {
+    "tagline": "Puerto Rico's Premier Fishing Experience"
+  },
+  "stats": {
+    "prizePool": "Prize Pool",
+    "anglers": "Anglers",
+    "events": "Annual Events"
+  },
+  "pillars": {
+    "tournaments": {
+      "title": "Tournaments",
+      "description": "Compete in world-class fishing tournaments with substantial prize pools across Puerto Rico's best waters.",
+      "cta": "View Tournaments"
+    },
+    "trips": {
+      "title": "All-Inclusive Trips",
+      "description": "Experience the ultimate fishing adventure with our curated all-inclusive packages.",
+      "cta": "Explore Trips"
+    },
+    "festival": {
+      "title": "Festival",
+      "description": "Join the celebration — fishing, food, music, and community on the shores of Puerto Rico.",
+      "cta": "Learn More"
+    }
+  },
+  "email": {
+    "heading": "Join the Crew",
+    "placeholder": "Enter your email",
+    "submit": "Subscribe",
+    "success": "Thank you for subscribing!"
+  },
+  "footer": {
+    "tagline": "Puerto Rico's Premier Fishing Experience",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "copyright": "© 2026 International Fishing Team. All rights reserved.",
+    "privacy": "Privacy Policy"
+  },
+  "about": {
+    "title": "About",
+    "team": "Our Team",
+    "story": "Our Story",
+    "contact": "Contact Us"
+  },
+  "tournaments": {
+    "title": "Tournaments",
+    "schedule": "Tournament Schedule",
+    "pastResults": "Past Results",
+    "registerCta": "Register for the Next Tournament"
+  },
+  "trips": {
+    "title": "All-Inclusive Fishing Trips",
+    "inquire": "Inquire Now",
+    "packages": "Trip Packages"
+  },
+  "festival": {
+    "title": "IFT Festival 2026",
+    "schedule": "Event Schedule",
+    "getCta": "Get Your Festival Pass"
+  },
+  "sponsors": {
+    "title": "Partner With Us",
+    "tiers": "Sponsorship Tiers",
+    "benefits": "Benefits Comparison",
+    "inquire": "Become a Sponsor"
+  },
+  "forms": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Submit",
+    "company": "Company Name",
+    "contactName": "Contact Name",
+    "tier": "Interested Tier",
+    "dates": "Preferred Dates",
+    "groupSize": "Group Size",
+    "subject": "Subject",
+    "success": "Thank you! We'll be in touch soon."
+  }
+}
