@@ -1,13 +1,20 @@
-import { useTranslations } from 'next-intl';
+import { TaglineReveal } from '@/components/home/TaglineReveal';
+import { StatsSection } from '@/components/home/StatsSection';
+import { ThreePillars } from '@/components/home/ThreePillars';
+import { UpcomingEvents } from '@/components/home/UpcomingEvents';
+import { SponsorStrip } from '@/components/home/SponsorStrip';
+import { EmailCapture } from '@/components/home/EmailCapture';
 
 export default function HomePage() {
-  const t = useTranslations('hero');
-
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <h1 className="font-display text-6xl font-extrabold text-abyssal-navy text-center px-4">
-        {t('tagline')}
-      </h1>
-    </div>
+    <>
+      {/* CinematicHero will go here once the hero pipeline is built */}
+      <TaglineReveal />
+      <StatsSection />
+      <ThreePillars />
+      <UpcomingEvents />
+      <SponsorStrip />
+      <EmailCapture />
+    </>
   );
 }
