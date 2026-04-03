@@ -948,9 +948,88 @@
         </div>
     </footer>
 
+    <style>
+        /* ── TOURNAMENTS ANIMATION ENHANCEMENTS ── */
+
+        /* Hero parallax */
+        .page-hero-img {
+            will-change: transform;
+        }
+
+        /* Table row reveals */
+        .schedule-table tbody tr {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .schedule-table tbody tr.row-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Status badge pulse for open registrations */
+        @keyframes pulse-badge {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 153, 181, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(0, 153, 181, 0); }
+        }
+        .status-open {
+            animation: pulse-badge 2.5s ease infinite;
+        }
+
+        /* Accordion smooth max-height */
+        .accordion-content {
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease !important;
+        }
+        .accordion-trigger::after {
+            display: inline-block;
+            transition: transform 0.35s ease !important;
+        }
+        .accordion-item.open .accordion-trigger::after {
+            transform: rotate(45deg);
+        }
+
+        /* CTA section card hover */
+        .register-cta {
+            position: relative;
+            overflow: hidden;
+        }
+        .register-cta::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Mobile card base hidden state */
+        .mobile-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .mobile-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .schedule-table tbody tr,
+            .mobile-card,
+            .status-open { animation: none; transition: none; }
+        }
+    </style>
+
     <script>
         (function () {
             gsap.registerPlugin(ScrollTrigger);
+
+            // ─── REDUCED MOTION CHECK ───
+            var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var isMobile = window.matchMedia('(max-width: 768px)').matches;
 
             // ─── NAV SCROLL EFFECT ───
             ScrollTrigger.create({
@@ -959,6 +1038,33 @@
                     document.getElementById('mainNav').classList.toggle('scrolled', self.direction === 1 || window.scrollY > 80);
                 }
             });
+
+            // ─── HERO PARALLAX ───
+            if (!prefersReduced) {
+                var heroImg = document.querySelector('.page-hero-img');
+                if (heroImg) {
+                    gsap.to(heroImg, {
+                        yPercent: 20,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: '.page-hero',
+                            start: 'top top',
+                            end: 'bottom top',
+                            scrub: true
+                        }
+                    });
+                }
+
+                // Hero text slide in from left
+                gsap.fromTo('.page-hero-content', {
+                    x: -60, opacity: 0
+                }, {
+                    x: 0, opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    delay: 0.2
+                });
+            }
 
             // ─── SCROLL REVEALS ───
             var revealElements = document.querySelectorAll('.reveal');
@@ -972,6 +1078,31 @@
             }, { threshold: 0.15 });
             revealElements.forEach(function (el) { revealObserver.observe(el); });
 
+            // ─── TABLE ROW STAGGER REVEAL ───
+            if (!prefersReduced) {
+                var tableRows = document.querySelectorAll('.schedule-table tbody tr');
+                var tableObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            var rows = entry.target.closest('tbody').querySelectorAll('tr');
+                            rows.forEach(function (row, idx) {
+                                setTimeout(function () {
+                                    row.classList.add('row-visible');
+                                }, idx * 100);
+                            });
+                            tableObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                if (tableRows.length > 0) {
+                    tableObserver.observe(tableRows[0]);
+                }
+            } else {
+                document.querySelectorAll('.schedule-table tbody tr').forEach(function (r) {
+                    r.classList.add('row-visible');
+                });
+            }
+
             // ─── ACCORDION ───
             var triggers = document.querySelectorAll('.accordion-trigger');
             triggers.forEach(function (trigger) {
@@ -981,10 +1112,13 @@
                     // Close all
                     document.querySelectorAll('.accordion-item').forEach(function (i) {
                         i.classList.remove('open');
+                        i.querySelector('.accordion-content').style.maxHeight = '0';
                     });
                     // Toggle clicked
                     if (!isOpen) {
                         item.classList.add('open');
+                        var content = item.querySelector('.accordion-content');
+                        content.style.maxHeight = content.scrollHeight + 'px';
                     }
                 });
             });
@@ -1003,6 +1137,24 @@
                 });
             }, { threshold: 0.1 });
             mobileCards.forEach(function (card) { cardObserver.observe(card); });
+
+            // ─── REGISTER CTA ENTRANCE ───
+            if (!prefersReduced) {
+                gsap.fromTo('.register-cta h2, .register-cta .btn', {
+                    y: 40, opacity: 0
+                }, {
+                    y: 0, opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '.register-cta',
+                        start: 'top 80%',
+                        once: true
+                    }
+                });
+            }
+
         })();
     </script>
 

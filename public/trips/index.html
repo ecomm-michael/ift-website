@@ -735,9 +735,74 @@
         </div>
     </footer>
 
+    <style>
+        /* ── TRIPS ANIMATION ENHANCEMENTS ── */
+
+        /* Package card stagger base state */
+        .package-card {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .package-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        /* Re-enable hover after visible */
+        .package-card.visible:hover {
+            transform: translateY(-4px);
+        }
+
+        /* "Most Popular" badge shine animation */
+        @keyframes badge-shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .package-badge {
+            background: linear-gradient(
+                90deg,
+                var(--teal) 0%,
+                var(--turquoise) 40%,
+                var(--teal) 60%,
+                var(--teal) 100%
+            );
+            background-size: 200% auto;
+            animation: badge-shine 3s linear infinite;
+        }
+
+        /* Checkmark items stagger (JS adds class) */
+        .package-inclusions li {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .package-inclusions li.item-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Price count-up highlight flash */
+        @keyframes price-flash {
+            0% { color: var(--turquoise); }
+            60% { color: var(--turquoise); }
+            100% { color: var(--teal); }
+        }
+        .package-price.counted {
+            animation: price-flash 0.6s ease forwards;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .package-card { opacity: 1; transform: none; }
+            .package-badge { animation: none; }
+            .package-inclusions li { opacity: 1; transform: none; }
+        }
+    </style>
+
     <script>
         (function () {
             gsap.registerPlugin(ScrollTrigger);
+
+            var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             // ─── NAV SCROLL EFFECT ───
             ScrollTrigger.create({
@@ -746,6 +811,30 @@
                     document.getElementById('mainNav').classList.toggle('scrolled', self.direction === 1 || window.scrollY > 80);
                 }
             });
+
+            // ─── HERO PARALLAX ───
+            if (!prefersReduced) {
+                gsap.to('.page-hero-img', {
+                    yPercent: 20,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.page-hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                });
+
+                // Hero content entrance
+                gsap.fromTo('.page-hero-content', {
+                    y: 50, opacity: 0
+                }, {
+                    y: 0, opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    delay: 0.1
+                });
+            }
 
             // ─── SCROLL REVEALS ───
             var revealElements = document.querySelectorAll('.reveal');
@@ -761,18 +850,74 @@
 
             // ─── STAGGER PACKAGE CARDS ───
             var cards = document.querySelectorAll('.package-card');
-            var cardObserver = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        var idx = Array.prototype.indexOf.call(cards, entry.target);
-                        setTimeout(function () {
-                            entry.target.classList.add('visible');
-                        }, idx * 150);
-                        cardObserver.unobserve(entry.target);
+
+            if (prefersReduced) {
+                cards.forEach(function (c) { c.classList.add('visible'); });
+            } else {
+                var cardObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            var idx = Array.prototype.indexOf.call(cards, entry.target);
+                            setTimeout(function () {
+                                entry.target.classList.add('visible');
+                                // Stagger checkmarks in this card
+                                var items = entry.target.querySelectorAll('.package-inclusions li');
+                                items.forEach(function (item, i) {
+                                    setTimeout(function () {
+                                        item.classList.add('item-visible');
+                                    }, i * 60);
+                                });
+                                // Price count-up flash
+                                var priceEl = entry.target.querySelector('.package-price');
+                                if (priceEl) {
+                                    var rawText = priceEl.textContent.trim();
+                                    var numStr = rawText.replace(/[^0-9]/g, '');
+                                    var prefix = rawText.replace(/[0-9,]/g, '').split('').find(function(c) { return c !== ','; }) || '$';
+                                    var target = parseInt(numStr, 10);
+                                    if (target > 0) {
+                                        var start = 0;
+                                        var duration = 800;
+                                        var startTime = null;
+                                        function countUp(ts) {
+                                            if (!startTime) startTime = ts;
+                                            var progress = Math.min((ts - startTime) / duration, 1);
+                                            var current = Math.floor(progress * target);
+                                            priceEl.textContent = prefix + current.toLocaleString();
+                                            if (progress < 1) {
+                                                requestAnimationFrame(countUp);
+                                            } else {
+                                                priceEl.textContent = rawText;
+                                                priceEl.classList.add('counted');
+                                            }
+                                        }
+                                        requestAnimationFrame(countUp);
+                                    }
+                                }
+                            }, idx * 150);
+                            cardObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                cards.forEach(function (card) { cardObserver.observe(card); });
+            }
+
+            // ─── BOOKING CTA ENTRANCE ───
+            if (!prefersReduced) {
+                gsap.fromTo('.booking-cta h2, .booking-cta p, .booking-cta .btn', {
+                    y: 40, opacity: 0
+                }, {
+                    y: 0, opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '.booking-cta',
+                        start: 'top 80%',
+                        once: true
                     }
                 });
-            }, { threshold: 0.1 });
-            cards.forEach(function (card) { cardObserver.observe(card); });
+            }
+
         })();
     </script>
 
